@@ -1,0 +1,323 @@
+Editor swagger: https://editor.swagger.io/
+
+
+openapi: 3.0.2
+servers: []
+info:
+  version: "2.0.0-draft.3"
+  title: GA4GH Beacon API Specification
+  description: >-
+    A Beacon is a web service for genetic data sharing that can be queried for
+    information about variants, individuals, biosamples, and other entities.
+  contact:
+    email: beacon@ga4gh.org
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+externalDocs:
+  description: |
+    Beacon Project
+  url: 'http://beacon-project.io/'
+paths:
+  /searchAll:
+    get:
+      summary: Get all cnvs
+      operationId: searchAllCNVs
+      tags:
+        - Endpoints
+      parameters:
+        - name: chromosome
+          in: query
+          description: Cromosome
+          required: false
+          schema:
+            type: string
+
+        - name: start
+          in: query
+          description: Region start
+          required: false
+          schema:
+            type: integer
+            format: int32
+
+        - name: end
+          in: query
+          description: Region end
+          required: false
+          schema:
+            type: integer
+            format: int32
+
+      responses:
+        '200':
+          description: |
+            Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /search:
+    post:
+      summary: |
+        Search list CNVs
+      operationId: searchCNVsPOST
+      tags:
+        - Endpoints
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CNVFiltersItems'
+        required: false
+      responses:
+        '200':
+          description: |
+            Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /populationFrequency:
+    get:
+      summary: |
+        Get pupulation frequence for a region
+      operationId: getPopulationFrequence
+      tags:
+        - Endpoints
+      responses:
+        '200':
+          description: |
+            Successful operation
+          content:
+            application/json:
+              schema:
+                $ref:  '#/components/schemas/Response'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+
+components:
+  schemas:
+
+    CNVFiltersItems:
+      description: |
+        Filter map.
+      type: object
+      properties:
+        regions:
+          description: >-
+            Location
+          type: string
+          example: '1:1-10000'
+
+        variantTypes:
+          description: >-
+            Types to search DUP or DEL
+          type: array
+          items:
+            type: string
+            example: 'DUP'
+
+        hpo:
+          description: >-
+            Types to search DUP or DEL
+          type: array
+          items:
+            type: string
+            example: ''
+        gene:
+          description: >-
+            Types to search gene
+          type: array
+          items:
+            type: string
+            example: 'HOMER2'
+        omim:
+          description: >-
+            Types to search term omim
+          type: array
+          items:
+            type: string
+            example: ''
+        orpha:
+          description: >-
+            Types to search term orpha
+          type: array
+          items:
+            type: string
+            example: ''
+        disgenet:
+          description: >-
+            Types to search term disgenet
+          type: array
+          items:
+            type: string
+            example: ''
+        go:
+          description: >-
+            Types to search term go
+          type: array
+          items:
+            type: string
+            example: ''
+
+    Response:
+      description: |
+        Result return
+      type: object
+      properties:
+        error:
+          type: object
+        numResults:
+          type: integer
+        numTotalResults:
+          type: integer
+        queryOptions:
+          type: object
+        result:
+          type: array
+          items:
+            oneOf:
+              - $ref: '#/components/schemas/CNVsPrioritization'
+
+    CNVs: &anchor
+      description: |
+        CNV data
+      properties:
+        genes:
+          type: array
+          items:
+            type: string
+        copy:
+          type: integer
+        score:
+          type: number
+          format: float
+        sampleId:
+          type: number
+          format: long
+        sampleName:
+          type: string
+        fileId:
+          type: object
+        scopeTecn:
+          type: string
+        jaccard:
+          type: number
+          format: double
+        group:
+          type: string
+
+    CNVsPrioritization:
+      description: |
+        CNV with annottions
+      <<: *anchor
+      properties:
+        frequencies:
+          type: integer
+          format: double
+        origins:
+          type: array
+          items:
+            $ref: '#/components/schemas/CNVs'
+        listAnnotation:
+          type: array
+          items:
+            $ref: '#/components/schemas/CNVsAnnotation'
+        CNVsDataSample:
+          type: array
+          items:
+            type: object
+        listCNVsOverlapIndex:
+          type: array
+          items:
+            $ref: '#/components/schemas/CNVs'
+        analysisData:
+          type: object
+        addInfo:
+          type: object
+
+
+
+    CNVsAnnotation:
+      description: Bean annotations
+      properties:
+        lociHpos:
+          items:
+            type: object
+        genes:
+          items:
+            type: object
+        hrr:
+          type: string
+        variants:
+          items:
+            type: object
+
+    Chromosome:
+      description: |
+        Reference name (chromosome). Accepting values 1-22, X, Y, MT.
+      type: string
+      enum:
+        - '1'
+        - '2'
+        - '3'
+        - '4'
+        - '5'
+        - '6'
+        - '7'
+        - '8'
+        - '9'
+        - '10'
+        - '11'
+        - '12'
+        - '13'
+        - '14'
+        - '15'
+        - '16'
+        - '17'
+        - '18'
+        - '19'
+        - '20'
+        - '21'
+        - '22'
+        - 'X'
+        - 'Y'
+        - 'MT'
+    Assembly:
+      description: |
+        Assembly identifier (GRC notation, e.g. GRCh37).
+      type: string
+      example: GRCh37
+
+
+    Error:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string

@@ -1,0 +1,126 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.App-logoCNV {
+
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+
+.HomePageCNV-layout {
+  width: auto;
+  margin-top: 48px;
+  margin-left: 24px;
+  margin-right: 24px;
+}
+@media (min-width: 1148px) {
+  .HomePageCNV-layout {
+    width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+.HomePage-mainFeaturedPost {
+  //margin-bottom: 32px;
+}
+
+.HomePage-mainFeaturedPostContent {
+  padding: 48px;
+}
+@media (min-width: 960px) {
+  .HomePage-mainFeaturedPostContent {
+    padding-right: 0;
+  }
+}
+.HomePage-mainGrid {
+  margin: 2.5em;
+  padding: 2.5em 2em 2.5em 2.5em;
+}
+.MuiTypography-root{
+  font-family: "Open Sans", sans-serif !important;
+  color: #444 !important;
+}
+.MuiAccordionSummary-root{
+  padding: 0px 10px !important;
+  min-height: 45px  !important;
+
+}
+
+.MuiAccordionSummary-root.Mui-expanded {
+  min-height: 45px !important;
+}
+
+.MuiTypography-body1{
+  font-size: small !important;
+}
+.MuiIconButton-root{
+ padding: 8px !important;
+}
+.MuiTableCell-root {
+  padding:10px !important;
+}
+
+.MuiAccordionSummary-content{
+  margin: 0px 0px !important;
+}
+
+.MuiAccordionDetails-root{
+  font-family: "Open Sans", sans-serif !important;
+  font-size: smaller !important;
+  padding: 5px 10px !important;
+  text-align: left !important;
+}
+.MuiInputBase-input{
+  font-size: small !important;
+
+}
+.MuiTableCell-root {
+  font-size: small !important;
+
+}
+
+.MuiAlert-message{
+  padding: 0px 0px !important;
+}
+.Legend{
+float:left;
+width:20px;
+min-height: 15px;
+}
+
