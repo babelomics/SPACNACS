@@ -1,4 +1,4 @@
-# Overviewhttps://github.com/babelomics/SPACNACS/issues
+# Overview
 SPACNACS is a crowdsourcing initiative to provide information about Copy Number Variations of the Spanish population to the scientific/medical community. We accept submissions from WES or WGS, no matter whether these come from healthy or diseased individuals.
 
 ### Documentation
