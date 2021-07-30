@@ -59,7 +59,7 @@ const MenuBar = ({ title, title2 }) => {
 
 
 
-					<Link to="/cnv/" style={{color: "white"}}>
+					<Link to="/spacnacs/" style={{color: "white"}}>
 						<img src={logoBar}
 							 className={classes.logo}
 							 alt="Logo Menu Bar"

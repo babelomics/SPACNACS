@@ -271,6 +271,7 @@ export default class Igv extends React.Component {
             return dataFieldsSytpe;
         }
 
+
         // modify
         this.browser.on('trackclick', function (track, popoverData) {
                 var markup = "<table class=\"igv-popover-table\">";
@@ -547,17 +548,22 @@ export default class Igv extends React.Component {
                 if ("CNVs" === track.name && !!track.featureSource && !!track.featureSource.config && !!track.featureSource.config.resultsField) {
                     let listDataFields = [];
                     let elto = Object.assign({}, track.featureSource.config.resultsField);
+                    let numCNVs = 0;
                     popoverData.forEach(function (pD) {
-                        if (pD.hasOwnProperty("html")  && pD.html.indexOf("dotted") == -1 ) {
+                        if (pD.name =="Sample" && numCNVs!=0) {
+                            // if (pD.hasOwnProperty("html")  && pD.html.indexOf("dotted") == -1 ) {
                             // add to list
                             listDataFields.push(Object.assign({}, elto));
                             // inicialize
                             elto = Object.assign({}, track.featureSource.config.resultsField);
                         }
+                        if (pD.name =="Sample")
+                            numCNVs = numCNVs + 1;
 
                         if (pD.name in elto){
                             elto[pD.name] = pD.value;
                         }
+
                     });
                     // Add last
                     listDataFields.push(Object.assign({}, elto));
