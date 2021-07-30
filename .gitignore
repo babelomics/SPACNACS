@@ -1,4 +1,6 @@
-config-local.js
-config-prod.js
-config.js
-.env
+spacnacs-web/src/.env
+spacnacs-web/src/.env.production
+spacnacs-web/src/config.js
+spacnacs-web/src/config-prod.js
+spacnacs-web/src/config-local.js
+spacnacs-web/.idea/
