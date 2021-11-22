@@ -4,3 +4,9 @@ spacnacs-web/src/config.js
 spacnacs-web/src/config-prod.js
 spacnacs-web/src/config-local.js
 spacnacs-web/.idea/
+.idea/
+
+spacnacs-web/package-lock.json
+spacnacs-web/build/
+spacnacs-web/node_modules/
+spacnacs-web/public/
