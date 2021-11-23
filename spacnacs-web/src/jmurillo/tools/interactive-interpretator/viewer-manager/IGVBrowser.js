@@ -544,6 +544,48 @@ export default class Igv extends React.Component {
                 }
 
 
+            if ("Regulatory regions" === track.name && !!track.featureSource && !!track.featureSource.config && !!track.featureSource.config.resultsField) {
+                let listDataFields = [];
+                let elto = Object.assign({}, track.featureSource.config.resultsField);
+                popoverData.forEach(function (pD) {
+                    if (pD.hasOwnProperty("html") && pD.html.indexOf("hr") !== -1) {
+                        // add to list
+                        listDataFields.push(Object.assign({}, elto));
+                        // inicialize
+                        elto = Object.assign({}, track.featureSource.config.resultsField);
+                    }
+                    let key = pD.name !== undefined ? pD.name.replace(":","") : pD.name;
+                    if (key in elto){
+                        elto[key] = pD.value;
+                    }
+                });
+                // Add last
+                listDataFields.push(Object.assign({}, elto));
+
+                let i = 0;
+                listDataFields.forEach(function (dataFields) {
+                    markup +=
+                        "<tr> <th >DataBase</th><td colspan='4' style='text-align:left;padding-left:10px'>"+track.name+"</td></tr>" +
+                        "<tr><th >Position</th><td colspan='4' style='text-align:left;padding-left:10px'>" + dataFields.position + "</td></tr>" +
+                        "<tr><th >Description</th><td colspan='4' style='text-align:left;padding-left:10px'>" + dataFields.description + "</td> </tr>" +
+                        "<tr><th >ID</th><td colspan='4' style='text-align:left;padding-left:10px'>" + dataFields["ID"] + "</td> </tr>" ;
+
+                    if (i+1 < listDataFields.length)
+                        markup +="<tr><td  colspan='5'><hr></td></tr>";
+
+                    i=i+1;
+                    //markup += "<tr><td colspan=2></td></tr>";
+
+                    //markup += "<tr><td colspan='2' \><button onclick=>" + "link  " + cnv + "</button></td></tr>";
+                    //markup += "<tr><td colspan=2> <Button onClick={alert('entra')}>Add filter region</Button></td></tr>";
+                    // track.browser.config.addGenomicRegion(region);
+                });
+
+
+                markup += "</table>";
+                return markup;
+            }
+
                 if ("CNVs" === track.name && !!track.featureSource && !!track.featureSource.config && !!track.featureSource.config.resultsField) {
                     let listDataFields = [];
                     let elto = Object.assign({}, track.featureSource.config.resultsField);
