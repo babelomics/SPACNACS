@@ -176,21 +176,21 @@ export default class Igv extends React.Component {
                         dataFreq[j] = "0";
                     }
                 }
-
-
-                console.log("Ini", data, alt);
                 data = dataFreq.join(",");
-                console.log("End", dataFreq,);
             }
+
+            //CNV 1000GP --> DEL= CN0  DUP=CN2+CN3+...CNn  (cromX DEL=CN0)
 
             if (data.indexOf(",")) {
                 let datas = data.split(",");
                 let result = 0;
                 let presicion = -1;
                 if (svtype == "DUP") {
-                    if (datas.length > 3) {
+                    let numCNDup = (db == "1000GP") ? 2 : 3;
+
+                    if (datas.length > numCNDup) {
                         //console.log(datas.slice(3, datas.length),"data", svtype);
-                        datas.slice(3, datas.length).forEach(x => {
+                        datas.slice(numCNDup, datas.length).forEach(x => {
                             let xFloat= String(parseFloat(x));
                             if (xFloat.indexOf(".") > 0)
                                 presicion = Math.max(presicion, xFloat.length - xFloat.indexOf(".") - 1);
@@ -201,7 +201,7 @@ export default class Igv extends React.Component {
                         result = "0"
                 }
                 if (svtype == "DEL") {
-                    if (datas.length > 1)
+                    if (datas.length > 1 && db !== "1000GP")
                     //result= parseFloat(datas[0])+parseFloat(data[1]);
                         datas.slice(0, 2).forEach(x => {
                             let xFloat= String(parseFloat(x));
@@ -382,7 +382,7 @@ export default class Igv extends React.Component {
                     // Add last
                     listDataFields.push(Object.assign({}, elto));
 
-                    // CNV --> DEL= CN0+CN1  DUP=CN3+...CNn  (cromX DEL=CN0)
+                    // CNV --> DEL= CN0  DUP=CN2+CN3+...CNn  (cromX DEL=CN0)
                     let listDataFieldsFinal = [];
 
                     listDataFields.forEach(function (dataFields) {
