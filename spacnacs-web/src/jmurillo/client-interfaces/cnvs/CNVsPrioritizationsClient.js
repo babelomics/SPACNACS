@@ -259,8 +259,8 @@ function translateFilterToServer(userId,  filter) {
 	if (!!filter.search) {
         if (!!filter.search.search) {
             filter.search.search.forEach(s => {
-                if (s.annotationField == "all") {
-                    if (s.searchText != "")
+                if (s.annotationField === "all") {
+                    if (s.searchText !== "")
                         serverFilter[s.annotationField] = s.searchText;
                 } else {
                     if (serverFilter[s.annotationField] == undefined)
@@ -272,7 +272,7 @@ function translateFilterToServer(userId,  filter) {
          if (!!filter.search.sort &&   (filter.search.sort || []).length > 0) {
              serverFilter.sort = [];
              filter.search.sort.forEach(s => {
-                 serverFilter.sort.push(s.option == "asc" ? "" + s.sortField :"-" + s.sortField);
+                 serverFilter.sort.push(s.option === "asc" ? "" + s.sortField :"-" + s.sortField);
 
              });
         }

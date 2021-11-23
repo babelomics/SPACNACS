@@ -89,7 +89,7 @@ const HomePage = props => (
 
                   </Typography>
                 <Typography  variant="h6" color="inherit" paragraph={true}>
-                  <b>{config.cnv.shortTitle}</b> currently stores information on 417 unrelated Spanish individuals.
+                  <b>{config.cnv.shortTitle}</b> currently stores information on 417 unrelated individuals of Spanish (Iberian) ancestry.
                 </Typography>
                 <br/>
                 <br/>

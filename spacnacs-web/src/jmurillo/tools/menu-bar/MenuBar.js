@@ -13,6 +13,7 @@ import Button from "@material-ui/core/es/Button/Button";
 import Menu from "@material-ui/core/es/Menu/Menu";
 import MenuItem from "@material-ui/core/es/MenuItem/MenuItem";
 import MenuHelp from "./MenuHelp";
+import config from "../../../config";
 
 
 // dark mode
@@ -55,9 +56,7 @@ const MenuBar = ({ title, title2 }) => {
     return (<AppBar position="static">
 		<Toolbar className={classes.toolBar}>
 			<div className={classes.marginLogo}>
-                 <HtmlTooltip title={"PrioCNVs"} >
-
-
+                 <HtmlTooltip title={config.cnv.shortTitle} >
 
 					<Link to="/spacnacs/" style={{color: "white"}}>
 						<img src={logoBar}

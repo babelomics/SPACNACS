@@ -271,7 +271,6 @@ export default class Igv extends React.Component {
             return dataFieldsSytpe;
         }
 
-
         // modify
         this.browser.on('trackclick', function (track, popoverData) {
                 var markup = "<table class=\"igv-popover-table\">";
@@ -550,14 +549,14 @@ export default class Igv extends React.Component {
                     let elto = Object.assign({}, track.featureSource.config.resultsField);
                     let numCNVs = 0;
                     popoverData.forEach(function (pD) {
-                        if (pD.name =="Sample" && numCNVs!=0) {
+                        if (pD.name === "Sample" && numCNVs != 0) {
                             // if (pD.hasOwnProperty("html")  && pD.html.indexOf("dotted") == -1 ) {
                             // add to list
                             listDataFields.push(Object.assign({}, elto));
                             // inicialize
                             elto = Object.assign({}, track.featureSource.config.resultsField);
                         }
-                        if (pD.name =="Sample")
+                        if (pD.name === "Sample")
                             numCNVs = numCNVs + 1;
 
                         if (pD.name in elto){
@@ -586,7 +585,7 @@ export default class Igv extends React.Component {
                             "<tr> <th>Score</th> <td class=\"igv-popover-td\">" + dataFields.score + "</td> </tr>" +
                             "<tr> <th>Frequency overlap</th> <td class=\"igv-popover-td\">" + dataFields.freqOverlap + "</td> </tr>" ;
 
-                        if(dataFields["num_copy"] != undefined && dataFields["num_copy"] != "")
+                        if(dataFields["num_copy"] != undefined && dataFields["num_copy"] !== "")
                             markup +="<tr> <th>Num copy</th> <td>" + dataFields["num_copy"] + "</td></tr>" ;
 
                         if (i+1 < listDataFields.length)
@@ -700,7 +699,7 @@ export default class Igv extends React.Component {
          listNextTracksCNVs.length > 0 &&
          listPreviosTracksCNVs[0].source.body != listNextTracksCNVs[0].source.body){
          let tracksUpdate =  this.browser.trackViews
-             .filter(view => view.track.id == 'CNVs')
+             .filter(view => view.track.id === 'CNVs')
              .map(view => view.track);
          this.browser.removeTrack(tracksUpdate[0]);
          this.browser.loadTrack(JSON.stringify(listNextTracksCNVs[0],removeSpecialChar));
@@ -740,7 +739,7 @@ export default class Igv extends React.Component {
          console.log(this.browser.trackViews ,"this.browser")
            for (var i=0; i < this.browser.config.tracks.length; i++){
                console.log(this.browser.config.tracks);
-               if (this.browser.config.tracks[i] != undefined && this.browser.config.tracks[i].name == "CNVs"){
+               if (this.browser.config.tracks[i] != undefined && this.browser.config.tracks[i].name === "CNVs"){
                    console.log(this.browser.config.tracks);
                    this.browser.config.tracks[i].body = JSON.stringify(translateFilterToServer(this.props.filters, null))
                    console.log(this.browser.config.tracks);

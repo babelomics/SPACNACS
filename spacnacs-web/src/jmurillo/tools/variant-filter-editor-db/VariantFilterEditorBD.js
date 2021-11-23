@@ -182,8 +182,8 @@ const VariantFilterEditorBD = ({ activeEditor, selectEditor, numSamples }) => {
 				<table style={{textAlign: "left"}}>
 					<tr><td><div class='Legend' style={{backgroundColor:"#FF0000"}}></div></td><td >Pathogenic</td></tr>
 					<tr><td><div class='Legend' style={{backgroundColor:"#FE8787"}} ></div></td><td>Likely pathogenic</td></tr>
-					<tr><td><div class='Legend' style={{backgroundColor:"#91EE91"}}></div></td><td>Likely bening</td></tr>
-					<tr><td><div class='Legend' style={{backgroundColor:"#028401"}}></div></td><td >Bening</td></tr>
+					<tr><td><div class='Legend' style={{backgroundColor:"#91EE91"}}></div></td><td>Likely benign</td></tr>
+					<tr><td><div class='Legend' style={{backgroundColor:"#028401"}}></div></td><td >Benign</td></tr>
 					<tr><td><div class='Legend' style={{backgroundColor:"grey"}}></div></td><td>Others</td></tr>
 				</table>
 			</Paper>

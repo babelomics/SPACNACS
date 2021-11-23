@@ -44,7 +44,8 @@ const reducer = (state = defaultState, action) => {
             return {
                 ...state,
                 genomicRegions:[action.region]
-            }
+            };
+
         case ActionTypes.genomicRegions.REMOVE:
             return !state.genomicRegions.includes(action.region) ? state : {
                 ...state,

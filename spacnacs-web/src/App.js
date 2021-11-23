@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Route,  Switch, useHistory, useLocation } from
 import MenuBar from './jmurillo/tools/menu-bar/ConnMenuBar';
 import HomePage from './HomePageCnv.js';
 import InteractiveInterpretator from './jmurillo/tools/interactive-interpretator/ActualInteractiveInterpretator';
-import DownloadManager from './jmurillo/tools/download/ActualDownloadManager';
+
 import NotFoundScreen from './NotFoundScreen';
 
 import Client from './jmurillo/client-interfaces/Client';

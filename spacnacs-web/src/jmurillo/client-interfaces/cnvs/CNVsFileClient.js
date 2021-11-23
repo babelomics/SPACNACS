@@ -81,7 +81,7 @@ class CNVsFileClient {
         if ( !!this.parent.session.getToken(userId)  && !!userId) {
 
             const queryStrings = CNVsCommonClient.getQuerString(userId, pageFilters, filters);
-            if (filters.individualId != undefined && filters.individualId !="")
+            if (filters.individualId != undefined && filters.individualId !== "")
                 queryStrings.push(`individualId=${filters.individualId}`);
             // const userParam = encodeURIComponent(userId);
             // const projectParam = encodeURIComponent(projectId);

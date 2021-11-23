@@ -112,7 +112,7 @@ const ListFilters = ({filters, onRemoveFilter, onLocus}) => {
                                     <React.Fragment>
                                         <ul>
                                             {!!term.id &&
-                                            <li>ID: {term.id}</li>
+                                            <li>Gene: {term.id}</li>
                                             }
                                             {!!term.name &&
                                             <li>Name: {term.name}</li>
