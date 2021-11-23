@@ -20,7 +20,54 @@ function percent(start, end, porc) {
     let c = (parseFloat(end) - parseFloat(start)) * parseFloat(porc);
     return parseFloat(c);
 }
+/*
+function showDataGraphic () {
+    let f = function  (data){
+        if (data === undefined)
+            return "";
+        let jsonData = JSON.parse(data);
+        let i = 0;
+        console.log(jsonData);
+        if (jsonData.hasOwnProperty("results")) {
+            jsonData.results.forEach(d => {
+                d.start = d.start - 1;
+            });
+            console.log(jsonData);
+            return jsonData.results;
+        } else {
+            jsonData.forEach(d => {
+                d.start = d.start - 1;
+            });
+            console.log(jsonData);
+            return jsonData;
+        }
+        return jsonData;
+    };
 
+    return f
+}
+*/
+function showDataGraphic (data){
+    if (data === undefined)
+        return "";
+    let jsonData = JSON.parse(data);
+    let i = 0;
+    console.log(jsonData);
+    if (jsonData.hasOwnProperty("results")) {
+        jsonData.results.forEach(d => {
+            d.start = d.start - 1;
+        });
+        console.log(jsonData);
+        return jsonData.results;
+    } else {
+        jsonData.forEach(d => {
+            d.start = d.start - 1;
+        });
+        console.log(jsonData);
+        return jsonData;
+    }
+    return jsonData;
+}
 
 
 function translateFilterToServer( filter, options) {
@@ -216,15 +263,12 @@ const ViewerManager = (props) => {
                 "num_copy":""
             },
             supportsWholeGenome:false,
-            description: function description() {
-                let result = "<table style='text-align: left; padding:15px'>" +
+            description: "<table style='text-align: left; padding:15px'>" +
                     "<tr>" +
                     "<td><div class='Legend' style='background-color:#ff2101'></div></td><td style='min-width:150px'>DEL</td>" +
                     "<td><div class='Legend' style='background-color:#028401' ></div></td><td style='min-width:150px'>DUP</td>" +
                     "</tr>" +
-                    "</table>" ;
-                return result;
-            },
+                    "</table>",
             source: {
                 url: props.url,
                  //function (options) {
@@ -260,15 +304,8 @@ const ViewerManager = (props) => {
 */
                 //body: "{}",
 
-                // Igv type bed add +1 in start to show graphic
-                parser: function (data){
-                    let jsonData = JSON.parse(data);
-                    let i = 0;
-                    jsonData.forEach(d=>{
-                        d.start = d.start-1;
-                    });
-                    return jsonData;
-                     },
+                // Igv type bed add +1 in start to show graphic (it does not work, modifiy igv
+                parser: showDataGraphic,
                 mappings:{ chr: "chromosome", start: "start", end: "end", sample: "fileId", value: "ty", sample: "sampleName" }
             },
 
