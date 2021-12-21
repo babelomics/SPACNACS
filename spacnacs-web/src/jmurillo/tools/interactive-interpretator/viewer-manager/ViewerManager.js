@@ -200,6 +200,17 @@ function translateFilterToServer( filter, options) {
         serverFilter.phenotypesSample = phenotypeSampleFilters;
     }
 
+
+    if (!!filter && 0 < (filter.sequencingTypes || []).length) {
+        const sequencingTypesFilters = [];
+        filter.sequencingTypes.forEach( g => {
+            sequencingTypesFilters.push(g.id);
+        });
+        serverFilter.sequencingTypes = sequencingTypesFilters;
+
+
+    }
+
     console.log("Search all", serverFilter);
     return serverFilter;
 }

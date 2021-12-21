@@ -21,6 +21,8 @@ import Chip from "@material-ui/core/es/Chip/Chip";
 import HtmlTooltip from "../../common/HtmlTooltip";
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import IconButton from "@material-ui/core/es/IconButton/IconButton";
+import SequencingTypeFilter from "../variant-filter-editor/filters/genomic/SequencingTypeFilter";
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -36,7 +38,6 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-
 const ListFilters = ({filters, onRemoveFilter, onLocus}) => {
     const classes = useStyles();
 
@@ -47,7 +48,6 @@ const ListFilters = ({filters, onRemoveFilter, onLocus}) => {
 	};
 
 */
-
 
 	return (
 		<Paper style={{ margin: "0.5em" }}>
@@ -279,6 +279,15 @@ const ListFilters = ({filters, onRemoveFilter, onLocus}) => {
                                 </HtmlTooltip>
                         </span>
                 }
+
+                {
+                    filters.sequencingTypes.map(s => {
+                        return (
+                    <Chip size="small" label={s.label} onDelete={event => {onRemoveFilter("sequencingTypes", s)}}/>
+                )
+                })
+                }
+
             </Alert>
 		</Paper>
 	);

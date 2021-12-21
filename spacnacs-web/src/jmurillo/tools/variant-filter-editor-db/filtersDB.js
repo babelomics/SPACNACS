@@ -33,6 +33,10 @@ import ConnAnnotationGeneSelector from '../variant-filter-editor/filters/genomic
 import ConnVariantTypeStatus from '../variant-filter-editor/filters/genomic/ConnVariantTypeStatus';
 import ConnVariantTypeFilter from '../variant-filter-editor/filters/genomic/ConnVariantTypeFilter';
 
+import ConnSequencingTypeStatus from '../variant-filter-editor/filters/genomic/ConnSequencingTypeStatus';
+import ConnSequencingTypeFilter from '../variant-filter-editor/filters/genomic/ConnSequencingTypeFilter';
+
+
 import ConnClinicalStatus from '../variant-filter-editor/filters/clinical/ConnFilterStatus';
 import ConnClinicalSignificance from '../variant-filter-editor/filters/clinical/ConnClinicalSignificance';
 import ConnClinicalAnnotationStatus from '../variant-filter-editor/filters/clinical/ConnAnnotationStatus';
@@ -135,6 +139,20 @@ const filtersDB = {
         icon: <RestoreIcon />,
         Component: ConnSamplesFilter,
         StatusIndicator: ConnSamplesStatus
+    },
+
+    sequencingType: {
+    short: "se",
+        label: "Sequencing type",
+        icon: <RestoreIcon />,
+        StatusIndicator: ConnSequencingTypeStatus,
+        sections : [
+        {
+            label: "Sequencing type",
+            Component: ConnSequencingTypeFilter,
+            sectionId: "Sequencing-type"
+        }
+    ]
     },
 
 /*

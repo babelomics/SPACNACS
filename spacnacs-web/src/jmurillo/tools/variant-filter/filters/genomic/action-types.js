@@ -16,6 +16,12 @@ const ActionTypes = Object.freeze({
         ADD: PREFIX + "genomicRegions.add",
         REMOVE: PREFIX + "genomicRegions.remove",
     }),
+
+    sequencingTypes: Object.freeze({
+        CLEAN: PREFIX + "sequencingTypes.clean",
+        ADD: PREFIX + "sequencingTypes.add",
+        REMOVE: PREFIX + "sequencingTypes.remove",
+    }),
 });
 
 

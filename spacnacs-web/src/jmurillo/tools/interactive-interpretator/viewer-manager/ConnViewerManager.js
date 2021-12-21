@@ -21,7 +21,7 @@ const mapStateToProps = state => ({
                 phenotypesSample: VariantFilterQuerist.samples.phenotypesSample(state) || [],
                 genders: VariantFilterQuerist.samples.genders(state) || [],
                 subpopulations: VariantFilterQuerist.samples.subpopulations(state) || [],
-
+                sequencingTypes:VariantFilterQuerist.genomic.sequencingTypes(state) || [],
             }
 });
 

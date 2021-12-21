@@ -32,6 +32,22 @@ const Actions = Object.freeze({
             region: region,
         }),
     },
+
+
+    sequencingTypes: {
+        clean: () => ({
+            type: ActionTypes.sequencingTypes.CLEAN,
+        }),
+            add: sequencingType => ({
+            type: ActionTypes.sequencingTypes.ADD,
+            sequencingType: sequencingType,
+        }),
+            remove: sequencingType => ({
+            type: ActionTypes.sequencingTypes.REMOVE,
+            sequencingType: sequencingType,
+        }),
+    },
+
 });
 
 

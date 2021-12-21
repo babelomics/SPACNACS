@@ -3,6 +3,7 @@ import ActionTypes from './action-types';
 const defaultState = {
     variantTypes: ['DUP','DEL'],
     genomicRegions: [],
+    sequencingTypes: [{id:'G', label:'Genome'}]
 };
 
 const reducer = (state = defaultState, action) => {
@@ -53,6 +54,20 @@ const reducer = (state = defaultState, action) => {
                     region.start !== action.region.start ||
                     region.end !== action.region.end),
             };
+
+
+        case ActionTypes.sequencingTypes.CLEAN:
+            return {
+                ...state,
+                sequencingTypes: [],
+        };
+        case ActionTypes.sequencingTypes.ADD:
+            return state.sequencingTypes.find(s => s.id === action.sequencingType.id) ? state : {
+               ...state, sequencingTypes: [...state.sequencingTypes, action.sequencingType] }
+
+        case ActionTypes.sequencingTypes.REMOVE:
+            return !state.sequencingTypes.find(s => s.id == action.sequencingType.id) ? state : {
+                ...state, sequencingTypes: state.sequencingTypes.filter(s => s.id !== action.sequencingType.id)}
 
 
         default:

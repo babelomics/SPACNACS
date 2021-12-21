@@ -21,8 +21,9 @@ const mapStateToProps = state => ({
                populationFrequency: VariantFilterQuerist.populationFrequency.populationFilters(state, "Spanish CNVs DB") || [],
                genders:VariantFilterQuerist.samples.genders(state) || [],
                phenotypesSamples: VariantFilterQuerist.samples.phenotypesSample(state) || [],
-               subpopulations: VariantFilterQuerist.samples.subpopulations(state) || []
-        }
+               subpopulations: VariantFilterQuerist.samples.subpopulations(state) || [],
+               sequencingTypes:VariantFilterQuerist.genomic.sequencingTypes(state),
+    }
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -67,6 +68,9 @@ const mapDispatchToProps = dispatch => ({
                 dispatch(VariantFilterActions.samples.subpopulations.clear());
                 break;
 
+            case "sequencingTypes":
+                dispatch(VariantFilterActions.genomic.sequencingTypes.remove(term));
+                break;
 
 
         }
