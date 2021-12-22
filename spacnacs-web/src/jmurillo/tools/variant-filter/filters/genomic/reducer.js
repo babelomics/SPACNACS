@@ -3,7 +3,8 @@ import ActionTypes from './action-types';
 const defaultState = {
     variantTypes: ['DUP','DEL'],
     genomicRegions: [],
-    sequencingTypes: [{id:'G', label:'Genome'}]
+    sequencingTypes: [{id:'G', label:'Genome'}],
+    pipeline: {id:'gridss', label:'Gridss'}
 };
 
 const reducer = (state = defaultState, action) => {
@@ -68,6 +69,16 @@ const reducer = (state = defaultState, action) => {
         case ActionTypes.sequencingTypes.REMOVE:
             return !state.sequencingTypes.find(s => s.id == action.sequencingType.id) ? state : {
                 ...state, sequencingTypes: state.sequencingTypes.filter(s => s.id !== action.sequencingType.id)}
+
+
+
+        case ActionTypes.pipeline.CLEAN:
+            return {
+                ...state,
+                pipeline: null,
+        };
+        case ActionTypes.pipeline.ADD:
+            return {...state, pipeline:  action.pipeline }
 
 
         default:

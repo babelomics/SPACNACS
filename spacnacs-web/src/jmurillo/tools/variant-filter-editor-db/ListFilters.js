@@ -281,13 +281,22 @@ const ListFilters = ({filters, onRemoveFilter, onLocus}) => {
                 }
 
                 {
-                    filters.sequencingTypes.map(s => {
+                    !!filters.sequencingTypes && filters.sequencingTypes.map(s => {
                         return (
                     <Chip size="small" label={s.label} onDelete={event => {onRemoveFilter("sequencingTypes", s)}}/>
                 )
                 })
                 }
 
+                {
+                    !!filters.pipeline  &&
+                    <span>
+                    <HtmlTooltip interactive title="Pipeline">
+                        <Chip size="small" label={filters.pipeline.label} onDelete={event => {onRemoveFilter("pipeline", filters.pipeline)}}/>
+                    </HtmlTooltip>
+                    </span>
+                }
+                    {console.log(filters)}
             </Alert>
 		</Paper>
 	);

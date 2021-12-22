@@ -22,7 +22,8 @@ const mapStateToProps = state => ({
                genders:VariantFilterQuerist.samples.genders(state) || [],
                phenotypesSamples: VariantFilterQuerist.samples.phenotypesSample(state) || [],
                subpopulations: VariantFilterQuerist.samples.subpopulations(state) || [],
-               sequencingTypes:VariantFilterQuerist.genomic.sequencingTypes(state),
+               sequencingTypes: VariantFilterQuerist.genomic.sequencingTypes(state) || [],
+               pipeline: VariantFilterQuerist.genomic.pipeline(state) || null,
     }
 })
 
@@ -72,7 +73,9 @@ const mapDispatchToProps = dispatch => ({
                 dispatch(VariantFilterActions.genomic.sequencingTypes.remove(term));
                 break;
 
-
+            case "pipeline":
+                dispatch(VariantFilterActions.genomic.pipeline.clean());
+                break;
         }
     },
     onLocus:(region) =>{

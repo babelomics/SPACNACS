@@ -38,13 +38,23 @@ const Actions = Object.freeze({
         clean: () => ({
             type: ActionTypes.sequencingTypes.CLEAN,
         }),
-            add: sequencingType => ({
+        add: sequencingType => ({
             type: ActionTypes.sequencingTypes.ADD,
             sequencingType: sequencingType,
         }),
-            remove: sequencingType => ({
+        remove: sequencingType => ({
             type: ActionTypes.sequencingTypes.REMOVE,
             sequencingType: sequencingType,
+        }),
+    },
+
+    pipeline: {
+        clean: () => ({
+            type: ActionTypes.pipeline.CLEAN,
+        }),
+        add: pipeline => ({
+            type: ActionTypes.pipeline.ADD,
+            pipeline: pipeline,
         }),
     },
 

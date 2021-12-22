@@ -22,6 +22,7 @@ const mapStateToProps = state => ({
                 genders: VariantFilterQuerist.samples.genders(state) || [],
                 subpopulations: VariantFilterQuerist.samples.subpopulations(state) || [],
                 sequencingTypes:VariantFilterQuerist.genomic.sequencingTypes(state) || [],
+                pipeline:VariantFilterQuerist.genomic.pipeline(state) || null,
             }
 });
 

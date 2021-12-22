@@ -6,6 +6,7 @@ const StateQuerist = Object.freeze({
     variantTypes: state => StateQuerist.rootState(state).variantTypes || [],
     genomicRegions: state => StateQuerist.rootState(state).genomicRegions || [],
     sequencingTypes: state => StateQuerist.rootState(state).sequencingTypes || [],
+    pipeline: state => StateQuerist.rootState(state).pipeline || null,
 });
 
 

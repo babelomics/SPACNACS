@@ -22,6 +22,11 @@ const ActionTypes = Object.freeze({
         ADD: PREFIX + "sequencingTypes.add",
         REMOVE: PREFIX + "sequencingTypes.remove",
     }),
+
+    pipeline: Object.freeze({
+        CLEAN: PREFIX + "pipeline.clean",
+        ADD: PREFIX + "pipeline.add",
+    }),
 });
 
 

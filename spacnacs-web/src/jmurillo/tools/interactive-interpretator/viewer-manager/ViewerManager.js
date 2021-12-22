@@ -192,6 +192,7 @@ function translateFilterToServer( filter, options) {
         });
         serverFilter.subpopulations = subpopulationsFilters;
     }
+
     if (!!filter && 0 < (filter.phenotypesSample || []).length) {
         const phenotypeSampleFilters = [];
         filter.phenotypesSample.forEach(g=>{
@@ -207,8 +208,10 @@ function translateFilterToServer( filter, options) {
             sequencingTypesFilters.push(g.id);
         });
         serverFilter.sequencingTypes = sequencingTypesFilters;
+    }
 
-
+    if (!!filter && !!filter.pipeline) {
+        serverFilter.pipeline = filter.pipeline.id;
     }
 
     console.log("Search all", serverFilter);

@@ -35,7 +35,8 @@ import ConnVariantTypeFilter from '../variant-filter-editor/filters/genomic/Conn
 
 import ConnSequencingTypeStatus from '../variant-filter-editor/filters/genomic/ConnSequencingTypeStatus';
 import ConnSequencingTypeFilter from '../variant-filter-editor/filters/genomic/ConnSequencingTypeFilter';
-
+import ConnPipelineStatus from '../variant-filter-editor/filters/genomic/ConnPipelineStatus';
+import ConnPipelineFilter from '../variant-filter-editor/filters/genomic/ConnPipelineFilter';
 
 import ConnClinicalStatus from '../variant-filter-editor/filters/clinical/ConnFilterStatus';
 import ConnClinicalSignificance from '../variant-filter-editor/filters/clinical/ConnClinicalSignificance';
@@ -153,6 +154,20 @@ const filtersDB = {
             sectionId: "Sequencing-type"
         }
     ]
+    },
+
+    pipeline: {
+        short: "pl",
+            label: "Pipeline",
+            icon: <RestoreIcon />,
+            StatusIndicator: ConnPipelineStatus,
+            sections : [
+            {
+                label: "Pipeline",
+                Component: ConnPipelineFilter,
+                sectionId: "pipe-line"
+            }
+        ]
     },
 
 /*
