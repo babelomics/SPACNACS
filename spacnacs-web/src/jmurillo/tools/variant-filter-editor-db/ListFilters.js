@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Collapse, Paper } from '@material-ui/core';
-// import { ToggleButton } from '@material-ui/lab';
 import { AppBar, Tab, Tabs } from '@material-ui/core';
 
 import uiFilters from './filtersDB';
@@ -16,13 +15,15 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import Alert from "@material-ui/lab/es/Alert/Alert";
 import Chip from "@material-ui/core/es/Chip/Chip";
 import HtmlTooltip from "../../common/HtmlTooltip";
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import IconButton from "@material-ui/core/es/IconButton/IconButton";
 import SequencingTypeFilter from "../variant-filter-editor/filters/genomic/SequencingTypeFilter";
-
+import InfoOutlined from '@material-ui/icons/InfoOutlined';
+import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
+import { styled } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -32,13 +33,19 @@ const useStyles = makeStyles((theme) => ({
         fontSize: theme.typography.pxToRem(15),
         fontWeight: theme.typography.fontWeightRegular,
     },
+    gridFilter:{
+        backgroundColor: '#E8F4FD',
+        borderRadius: "4px"
+    },
+    gridFilterIcon:{
+        color: '#2196f3'
+    }
 }));
 
 //==============================================================================
 
 
-
-const ListFilters = ({filters, onRemoveFilter, onLocus}) => {
+const ListFilters = ({filters, onRemoveFilter, onLocus, locusVariantActual}) => {
     const classes = useStyles();
 
 /*	const onEditorChange = (_, value) => {
@@ -50,44 +57,29 @@ const ListFilters = ({filters, onRemoveFilter, onLocus}) => {
 */
 
 	return (
-		<Paper style={{ margin: "0.5em" }}>
-			{/*<AppBar position="static">
-				<Tabs value={activeEditor} onChange={onEditorChange} scrollButtons="auto" variant="scrollable">
-					{
-                        Object.keys(uiFiltersShow).map(key =>
-									<Tab key={key} label={<FilterTabLabel filter={uiFilters[key]}/>}
-										 value={key} component="div"/>
-						)
-					}
-				</Tabs>
-			</AppBar>*/}
-			{/*
-                 Object.keys(uiFiltersShow).map(key => {
-					const uiFilter = uiFilters[key];
-					const Component = uiFilter.Component;
-					return (
-						<Collapse key={key} in={key === activeEditor} mountOnEnter unmountOnExit>
-							<Component />
-						</Collapse>
-					);
-				})
-			*/}
-            <Alert severity="info"><strong>Summary filters selected:</strong>
-                {console.log("filters",filters)}
+		<Paper style={{ margin: "0.5em", padding: '0.5em',  }}>
+            <Grid container direction="row" alignItems="center" spacing={2} className={classes.gridFilter} >
+              <Grid item>
+                 <InfoOutlined className={classes.gridFilterIcon} />
+              </Grid>
+              <Grid item>
+               <strong> Summary filters selected: </strong>
+              </Grid>
+              <Grid item>
                 {
                     filters.genomicRegions.map(f => {
                         return (
-                            <span>
-                                <IconButton color="primary" aria-label="upload picture" component="span" size="small" onClick={event => {onLocus(f)}}>
+                           <Box component="span" m={0.5}>
+                                <IconButton color="primary" aria-label="Go to" component="span" size="small" onClick={event => {onLocus(f, locusVariantActual)}}>
                                      <HtmlTooltip interactive title={
                                          <React.Fragment>
                                              Go to location: {f}
                                          </React.Fragment>}>
-                                        <LocationOnIcon/>
+                                        <LocationOnIcon />
                                     </HtmlTooltip>
                                 </IconButton>
                                 <Chip size="small" label={f} onDelete={event => {onRemoveFilter("genomicRegions", f)}}/>
-                            </span>
+                            </Box>
                         )
                     })
                 }
@@ -99,8 +91,8 @@ const ListFilters = ({filters, onRemoveFilter, onLocus}) => {
                         }
                         let location = `${term.chromosome}:${term.start}-${term.end}`;
                         return (
-                            <span>
-                                <IconButton color="primary" aria-label="upload picture" component="span"  size="small" onClick={event => {onLocus(location)}}>
+                            <Box component="span" m={0.5}>
+                                <IconButton color="primary" aria-label="upload picture" component="span"  size="small" onClick={event => {onLocus(location, locusVariantActual)}}>
                                      <HtmlTooltip interactive title={
                                          <React.Fragment>
                                              Go to gen {term.id}  (Location: {location})
@@ -130,21 +122,23 @@ const ListFilters = ({filters, onRemoveFilter, onLocus}) => {
                                     </React.Fragment>}>
                                     <Chip size="small" label={label} onDelete={event => {onRemoveFilter("genes", term)}}/>
                                 </HtmlTooltip>
-                            </span>
+                            </Box>
                         )
                     })
                 }
                 {
                     filters.variantTypes.map(f => {
                         return (
-                            <Chip size="small" label={f} onDelete={event => {onRemoveFilter("variantTypes", f)}}/>
+                            <Box component="span" m={0.5}>
+                                <Chip size="small" label={f} onDelete={event => {onRemoveFilter("variantTypes", f)}} />
+                            </Box>
                         )
                     })
-				}
+                }
                 {
                    filters.clinvars.map(f => {
                        return (
-                           <Chip size="small" label={f} onDelete={event => {onRemoveFilter("clinvars", f)}}/>
+                            <Box component="span" m={0.5}><Chip size="small" label={f} onDelete={event => {onRemoveFilter("clinvars", f)}}/></Box>
                        )
                     })
                 }
@@ -155,7 +149,7 @@ const ListFilters = ({filters, onRemoveFilter, onLocus}) => {
                             label = label.slice(0,50).concat("...");
                         }
                         return (
-                            <span>
+                            <Box component="span" m={0.5}>
                                 <HtmlTooltip interactive title={
                                     <React.Fragment>
                                         <ul>
@@ -187,7 +181,7 @@ const ListFilters = ({filters, onRemoveFilter, onLocus}) => {
 
                                     />
                                 </HtmlTooltip>
-                            </span>
+                            </Box>
                         )
                     })
                 }
@@ -206,7 +200,7 @@ const ListFilters = ({filters, onRemoveFilter, onLocus}) => {
 
 
                         return (
-                            <Chip size="small" label={label} onDelete={event => {onRemoveFilter("populationFrequency", f)}}/>
+                            <Box component="span" m={0.5}><Chip size="small" label={label} onDelete={event => {onRemoveFilter("populationFrequency", f)}}/></Box>
                         )
                     })
                 }
@@ -218,7 +212,7 @@ const ListFilters = ({filters, onRemoveFilter, onLocus}) => {
                             label = label.slice(0,50).concat("...");
                         }
                         return (
-                            <span>
+                           <Box component="span" m={0.5}>
                                 <HtmlTooltip interactive title={
                                     <React.Fragment>
                                         <div>
@@ -246,20 +240,20 @@ const ListFilters = ({filters, onRemoveFilter, onLocus}) => {
                                           }}
                                     />
                                 </HtmlTooltip>
-                            </span>
+                            </Box>
                         )
                     })
                 }
                 {
                    filters.genders.map(f => {
                         return (
-                            <Chip size="small" label={f.label} onDelete={event => {onRemoveFilter("genders", f)}}/>
+                            <Box component="span" m={0.5}><Chip size="small" label={f.label} onDelete={event => {onRemoveFilter("genders", f)}}/></Box>
                         )
                     })
                 }
                 {
                     !!filters.subpopulations && filters.subpopulations.length > 0 &&
-                        <span>
+                        <Box component="span" m={0.5}>
                              <HtmlTooltip interactive title={
                                  <React.Fragment>
                                      <ul>
@@ -277,13 +271,13 @@ const ListFilters = ({filters, onRemoveFilter, onLocus}) => {
                                           }}
                                     />
                                 </HtmlTooltip>
-                        </span>
+                        </Box>
                 }
 
                 {
                     !!filters.sequencingTypes && filters.sequencingTypes.map(s => {
                         return (
-                    <Chip size="small" label={s.label} onDelete={event => {onRemoveFilter("sequencingTypes", s)}}/>
+                    <Box component="span" m={0.5}><Chip size="small" label={s.label} onDelete={event => {onRemoveFilter("sequencingTypes", s)}}/></Box>
                 )
                 })
                 }
@@ -292,19 +286,21 @@ const ListFilters = ({filters, onRemoveFilter, onLocus}) => {
                     !!filters.pipeline  &&
                     <span>
                     <HtmlTooltip interactive title="Pipeline">
-                        <Chip size="small" label={filters.pipeline.label} onDelete={event => {onRemoveFilter("pipeline", filters.pipeline)}}/>
+                        <Box component="span" m={0.5}><Chip size="small" label={filters.pipeline.label} onDelete={event => {onRemoveFilter("pipeline", filters.pipeline)}}/></Box>
                     </HtmlTooltip>
                     </span>
                 }
-                    {console.log(filters)}
-            </Alert>
-		</Paper>
+
+              </Grid>
+        </Grid>
+	</Paper>
 	);
 };
 
 
 ListFilters.propTypes = {
     filters: PropTypes.object.isRequired,
+    locusVariantActual: PropTypes.string,
     onRemoveFilter: PropTypes.func.isRequired,
     onLocus: PropTypes.func.isRequired
 };

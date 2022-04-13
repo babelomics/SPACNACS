@@ -6,6 +6,8 @@ import { Chip, IconButton, FormControl, FormLabel, withStyles, Paper, InputBase 
 
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import ClearIcon from '@material-ui/icons/Clear';
+import HtmlTooltip from "./../../../../common/HtmlTooltip";
+import Box from '@material-ui/core/Box';
 
 
 const styles = theme => ({
@@ -63,6 +65,7 @@ class GenomicRegionsFilter extends React.Component {
 
 		this.onRegionChange = this.onRegionChange.bind(this);
 		this.onAddRegion = this.onAddRegion.bind(this);
+		this.removeTerm = this.removeTerm.bind(this);
 		this.onClearRegion = this.onClearRegion.bind(this);
 	}
 	/*
@@ -107,14 +110,25 @@ class GenomicRegionsFilter extends React.Component {
 
         if (this.isValid()){
             this.props.addGenomicRegion(this.state.region);
+            this.setState({ ...this.state,
+            			region: "",
+                        message: ""
+                    });
 		} else {
             this.setState({ ...this.state,
                 message: "Invalid region."});
 		}
 
 	}
+
+    removeTerm(term){
+        console.log(term);
+        if (term.annotationField == "all")
+            term.searchText = "";
+        this.props.removeGenomicRegion(term.constructor.name == "Array" ? term[0] : term);
+    }
+
     onClearRegion(event){
-		console.log(this)
         this.setState({...this.state , region: "", chromosome: "",
             start: 0,
             end: 0,
@@ -162,53 +176,67 @@ class GenomicRegionsFilter extends React.Component {
 	render() {
         const { classes } = this.props;
 		return (
-			<FormControl >
-				<FormGroup row>
+		    <div>
+                <label style={{ color:"#666"}}>Region:</label>
+                        {!!this.props && !!this.props.regions && this.props.regions.length > 0 &&
+                            <Box component="span" m={0.5}>
+                            <Chip  size="small"
+                                   label={this.props.regions}
+                                   onDelete={event => {
+                                       this.removeTerm(this.props.regions);
+                                   }}
+                            />
+                            </Box>
+                        }
+                <FormControl >
+                    <FormGroup row>
 
-					<label style={{ color:"#666"}}>Region:</label>
-
-					<Paper className={classes.textPaper}>
-						<InputBase className={classes.textInput} placeholder="1:1-10000" value={this.state.region}
-								   onChange={this.onRegionChange}   error={!this.isValid.bind(this)} />
-						<IconButton aria-label="search" onClick={this.onAddRegion} disabled={!this.isValid.bind(this)}  size="large">
-							<CheckCircleIcon  size="small"/>
-						</IconButton>
-						<IconButton type="submit"  aria-label="clear"  onClick={this.onClearRegion} size="small" >
-							<ClearIcon  size="small"/>
-						</IconButton>
-					</Paper>
 
 
-					{/*<TextField inputProps={{ maxLength: 22}}
-							   label="" value={this.state.region}  onChange={this.onRegionChange}
-							   variant="outlined"  size="small" margin="dense"  placeholder="1:1-10000"
-							   error={!this.isValid.bind(this)} />*/}
 
-					{/*<TextField inputProps={{ maxLength: 2}} label="chromosome" value={this.state.chromosome} onChange={this.onChromosomeChange} margin="small" error={!this.isValid.bind(this)} />
-					<TextField inputProps={{ maxLength: 9}} label="start" value={this.state.start} onChange={this.onStartChange} margin="small" error={!this.isValid.bind(this)} />
-					<TextField inputProps={{ maxLength: 9}} label="end" value={this.state.end} onChange={this.onEndChange} margin="small" error={!this.isValid.bind(this)} />*/}
-                    {/*<IconButton onClick={this.onAddRegion} disabled={!this.isValid.bind(this)}>
-						<CheckCircleIcon />
-					</IconButton>
-					<IconButton onClick={this.onClearRegion} >
-						<ClearIcon />
-					</IconButton>*/}
-					<p style={{color:"#f44336"}}>{this.state.message}</p>
-				</FormGroup>
-				<div>
-					{/*
-						!!this.props.regions && this.props.regions.map(region => {
-							const onRemove = () => {
-								//this.props.setRegions(this.props.regions.filter(r => r !== region));
-								this.props.removeGenomicRegion(region);
-							};
-							return (
-								<Region key={region} region={region} onDelete={onRemove} />
-							);
-						})
-					*/}
-				</div>
-			</FormControl>
+                        <Paper className={classes.textPaper}>
+                            <InputBase className={classes.textInput} placeholder="1:1-10000" value={this.state.region}
+                                       onChange={this.onRegionChange}   error={!this.isValid.bind(this)} />
+                            <IconButton aria-label="search" onClick={this.onAddRegion} disabled={!this.isValid.bind(this)}  size="large">
+                                <CheckCircleIcon  size="small"/>
+                            </IconButton>
+                            <IconButton type="submit"  aria-label="clear"  onClick={this.onClearRegion} size="small" >
+                                <ClearIcon  size="small"/>
+                            </IconButton>
+                        </Paper>
+
+
+                        {/*<TextField inputProps={{ maxLength: 22}}
+                                   label="" value={this.state.region}  onChange={this.onRegionChange}
+                                   variant="outlined"  size="small" margin="dense"  placeholder="1:1-10000"
+                                   error={!this.isValid.bind(this)} />*/}
+
+                        {/*<TextField inputProps={{ maxLength: 2}} label="chromosome" value={this.state.chromosome} onChange={this.onChromosomeChange} margin="small" error={!this.isValid.bind(this)} />
+                        <TextField inputProps={{ maxLength: 9}} label="start" value={this.state.start} onChange={this.onStartChange} margin="small" error={!this.isValid.bind(this)} />
+                        <TextField inputProps={{ maxLength: 9}} label="end" value={this.state.end} onChange={this.onEndChange} margin="small" error={!this.isValid.bind(this)} />*/}
+                        {/*<IconButton onClick={this.onAddRegion} disabled={!this.isValid.bind(this)}>
+                            <CheckCircleIcon />
+                        </IconButton>
+                        <IconButton onClick={this.onClearRegion} >
+                            <ClearIcon />
+                        </IconButton>*/}
+                        <p style={{color:"#f44336"}}>{this.state.message}</p>
+                    </FormGroup>
+                    <div>
+                        {/*
+                            !!this.props.regions && this.props.regions.map(region => {
+                                const onRemove = () => {
+                                    //this.props.setRegions(this.props.regions.filter(r => r !== region));
+                                    this.props.removeGenomicRegion(region);
+                                };
+                                return (
+                                    <Region key={region} region={region} onDelete={onRemove} />
+                                );
+                            })
+                        */}
+                    </div>
+                </FormControl>
+			</div>
 		);
 	}
 }

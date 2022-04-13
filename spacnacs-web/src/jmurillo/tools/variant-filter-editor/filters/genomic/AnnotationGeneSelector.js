@@ -22,6 +22,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import Chip from '@material-ui/core/Chip';
+import Box from '@material-ui/core/Box';
 
 const styles = theme => ({
 	paper: {
@@ -96,7 +97,7 @@ class AnnotationGeneSelector extends React.Component {
 		return (
 			<div style={{paddingTop:"1em"}}>
 
-				<label style={{ color:"#666"}}>Gene:</label><br/>
+				<label style={{ color:"#666"}}>Gene:</label>
 
 
                 {selected.map((term) => {
@@ -119,13 +120,14 @@ class AnnotationGeneSelector extends React.Component {
 									<li>Location: {term.chromosome}:{term.start}-{term.end}</li>
 								</ul>
 							</React.Fragment>}>
-							<Chip  size="small"
+							<Box component="span" m={0.5}><Chip  size="small"
 								   label={label}
 								   onDelete={event => {
                                        this.removeTerm(term);
                                    }}
 
-							/>
+
+							/> </Box>
 						</HtmlTooltip>
                     )}
                 )}

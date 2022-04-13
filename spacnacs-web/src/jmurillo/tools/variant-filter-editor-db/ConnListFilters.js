@@ -7,6 +7,7 @@ import ListFilters from './ListFilters';
 import VariantFilterQuerist from './../variant-filter/state-querist';
 import VariantFilterActions from './../variant-filter/actions';
 import InteractiveInterpretatorActions from "../interactive-interpretator/actions";
+import InteractiveInterpretatorQuerist from "../interactive-interpretator/state-querist";
 
 
 const mapStateToProps = state => ({
@@ -24,13 +25,15 @@ const mapStateToProps = state => ({
                subpopulations: VariantFilterQuerist.samples.subpopulations(state) || [],
                sequencingTypes: VariantFilterQuerist.genomic.sequencingTypes(state) || [],
                pipeline: VariantFilterQuerist.genomic.pipeline(state) || null,
-    }
+    },
+   locusVariantActual: InteractiveInterpretatorQuerist.locusVariant(state) || ""
 })
 
 const mapDispatchToProps = dispatch => ({
 	/*selectEditor: editorName => {
 		dispatch(Actions.selectActiveEditor(editorName));
 	},*/
+
 	onRemoveFilter:(annotation, term) => {
 	    switch (annotation){
             case "genomicRegions":
@@ -78,8 +81,14 @@ const mapDispatchToProps = dispatch => ({
                 break;
         }
     },
-    onLocus:(region) =>{
-        dispatch(InteractiveInterpretatorActions.variants.locusVariant(region));
+    onLocus:(region, locusVariantActual) =>{
+        //dispatch(InteractiveInterpretatorActions.variants.locusVariant(region.split(":")[0]));
+        console.log("locusVariantActual", locusVariantActual, region);
+        let newRegion = region;
+        if (locusVariantActual == region)
+            newRegion = region.split(":")[0] + ":" + (parseInt(region.split(":")[1].split("-")[0]) - 1) + "-" + (parseInt(region.split(":")[1].split("-")[1]) +1);
+        dispatch(InteractiveInterpretatorActions.variants.locusVariant(newRegion));
+
 
     }
 });
