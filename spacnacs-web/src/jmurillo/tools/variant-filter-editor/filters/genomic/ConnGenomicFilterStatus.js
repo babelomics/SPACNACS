@@ -7,7 +7,7 @@ import VariantFilterQuerist from '../../../variant-filter/state-querist';
 
 const mapStateToProps = state => ({
 	/*active: VariantFilterQuerist.samples.samples(state).some(sample => !!sample.typeGroup && 0 < sample.typeGroup.length),*/
-    active: 0 < VariantFilterQuerist.genomic.genomicRegions(state).length + VariantFilterQuerist.search.search(state).some(t => t.annotationField == "gene")
+    active: 0 < VariantFilterQuerist.genomic.genomicRegions(state).length + VariantFilterQuerist.search.search(state).some(t => t.annotationField === "gene")
 });
 
 

@@ -67,7 +67,7 @@ const reducer = (state = defaultState, action) => {
                ...state, sequencingTypes: [...state.sequencingTypes, action.sequencingType] }
 
         case ActionTypes.sequencingTypes.REMOVE:
-            return !state.sequencingTypes.find(s => s.id == action.sequencingType.id) ? state : {
+            return !state.sequencingTypes.find(s => s.id === action.sequencingType.id) ? state : {
                 ...state, sequencingTypes: state.sequencingTypes.filter(s => s.id !== action.sequencingType.id)}
 
 

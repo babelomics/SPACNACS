@@ -2,8 +2,8 @@ import React from 'react';
 import propTypes from 'prop-types';
 //import igv from 'igv/dist/igv.esm.min';
 import igv from 'igv/dist/igv.esm';
-import Button from '@material-ui/core';
-import ViewerManager from "./ViewerManager";
+//import Button from '@material-ui/core';
+//import ViewerManager from "./ViewerManager";
 
 const TrackTypes = propTypes.oneOf([
   'annotation', 'wig', 'alignment', 'variant', 'seg'
@@ -89,7 +89,7 @@ const removeSpecialChar =(key, val) => {
     if (typeof val === 'function') {
         return val + ''; // implicitly `toString` it
     }
-    if (typeof(val)!="string") return val;
+    if (typeof(val) !=="string") return val;
 
     return val
         //.replace(/[\"]/g, '\\"')
@@ -133,7 +133,7 @@ export default class Igv extends React.Component {
         console.log("Created IGV browser");
 
         for (var i=0; i < this.browser.trackViews.length; i++){
-            if (this.browser.trackViews[i].track != undefined && this.browser.trackViews[i].track.config != undefined && this.browser.trackViews[i].track.config.legend != undefined){
+            if (this.browser.trackViews[i].track !== undefined && this.browser.trackViews[i].track.config !== undefined && this.browser.trackViews[i].track.config.legend !== undefined){
                 this.browser.trackViews[i].viewports[0].$content[0].innerHTML = this.browser.trackViews[i].track.config.legend;
             }
         }
@@ -147,7 +147,7 @@ export default class Igv extends React.Component {
         function updateTrackLegendList () {
             let find = -1;
             for (var i=0; i < b.trackViews.length; i++){
-                if (b.trackViews[i].track != undefined && b.trackViews[i].track.config != undefined && b.trackViews[i].track.config.legend != undefined){
+                if (b.trackViews[i].track !== undefined && b.trackViews[i].track.config !== undefined && b.trackViews[i].track.config.legend !== undefined){
                     b.trackViews[i].viewports[0].$content[0].innerHTML = b.trackViews[i].track.config.legend;
                 }
             }
@@ -155,7 +155,7 @@ export default class Igv extends React.Component {
 
         const sumDataSvtype = (data, svtype, db, alt) => {
             let dataFreq = [];
-            if (db == "1000GP"){
+            if (db === "1000GP"){
                 let datas = data.split(",");
                 let listPosAltern = alt.split(",");
                 let pos = 0;
@@ -185,8 +185,8 @@ export default class Igv extends React.Component {
                 let datas = data.split(",");
                 let result = 0;
                 let presicion = -1;
-                if (svtype == "DUP") {
-                    let numCNDup = (db == "1000GP") ? 2 : 3;
+                if (svtype === "DUP") {
+                    let numCNDup = (db === "1000GP") ? 2 : 3;
 
                     if (datas.length > numCNDup) {
                         //console.log(datas.slice(3, datas.length),"data", svtype);
@@ -200,7 +200,7 @@ export default class Igv extends React.Component {
                         //result = datas;
                         result = "0"
                 }
-                if (svtype == "DEL") {
+                if (svtype === "DEL") {
                     if (datas.length > 1 && db !== "1000GP")
                     //result= parseFloat(datas[0])+parseFloat(data[1]);
                         datas.slice(0, 2).forEach(x => {
@@ -289,7 +289,7 @@ export default class Igv extends React.Component {
                 let listDataFields = [];
                 let elto = Object.assign({}, track.featureSource.config.resultsField);
                 popoverData.forEach(function (pD) {
-                    if (pD =="<hr/><hr/>") {
+                    if (pD ==="<hr/><hr/>") {
                         // add to list
                         listDataFields.push(Object.assign({}, elto));
                         // inicialize
@@ -325,7 +325,7 @@ export default class Igv extends React.Component {
                 let listDataFields = [];
                 let elto = Object.assign({}, track.featureSource.config.resultsField);
                 popoverData.forEach(function (pD) {
-                    if (pD =="<hr/><hr/>") {
+                    if (pD ==="<hr/><hr/>") {
                         // add to list
                         listDataFields.push(Object.assign({}, elto));
                         // inicialize
@@ -369,7 +369,7 @@ export default class Igv extends React.Component {
                     let listDataFields = [];
                     let elto = Object.assign({}, track.featureSource.config.resultsField);
                     popoverData.forEach(function (pD) {
-                        if (pD.hasOwnProperty("html") && pD.html.indexOf("dotted") == -1) {
+                        if (pD.hasOwnProperty("html") && pD.html.indexOf("dotted") === -1) {
                             // add to list
                             listDataFields.push(Object.assign({}, elto));
                             // inicialize
@@ -386,14 +386,14 @@ export default class Igv extends React.Component {
                     let listDataFieldsFinal = [];
 
                     listDataFields.forEach(function (dataFields) {
-                        if (dataFields.SVTYPE  == "CNV"){
+                        if (dataFields.SVTYPE  === "CNV"){
                             let dataFieldsDEL = divideDataSvtype(dataFields, "DEL", track.name);
                             let dataFieldsDUP = divideDataSvtype(dataFields, "DUP", track.name);
 
                             // Add DUP and DEL if exist data
-                            if (dataFieldsDUP.AF != "0")
+                            if (dataFieldsDUP.AF !== "0")
                                 listDataFieldsFinal.push( Object.assign({}, dataFieldsDUP));
-                            if (dataFieldsDEL.AF != "0")
+                            if (dataFieldsDEL.AF !== "0")
                                 listDataFieldsFinal.push( Object.assign({}, dataFieldsDEL));
                         } else
                             listDataFieldsFinal.push( Object.assign({}, dataFields));
@@ -442,7 +442,7 @@ export default class Igv extends React.Component {
                     let listDataFields = [];
                     let elto = Object.assign({}, track.featureSource.config.resultsField);
                     popoverData.forEach(function (pD) {
-                        if (pD.hasOwnProperty("html")  && pD.html.indexOf("dotted") == -1)  {
+                        if (pD.hasOwnProperty("html")  && pD.html.indexOf("dotted") === -1)  {
                             // add to list
                             listDataFields.push(Object.assign({}, elto));
                             // inicialize
@@ -459,21 +459,21 @@ export default class Igv extends React.Component {
                     let listDataFieldsFinal = [];
 
                     listDataFields.forEach(function (dataFields) {
-                        if (dataFields.SVTYPE  == "MCNV"){
+                        if (dataFields.SVTYPE  === "MCNV"){
                             let dataFieldsDEL = divideDataSvtype(dataFields, "DEL", track.name);
                             let dataFieldsDUP = divideDataSvtype(dataFields, "DUP", track.name);
 
-                            if (dataFields.Chr == "X") {
-                                if (dataFields.hasOwnProperty("FEMALE_AF") && dataFields.FEMALE_AF.split(",")[0] != "0")
+                            if (dataFields.Chr === "X") {
+                                if (dataFields.hasOwnProperty("FEMALE_AF") && dataFields.FEMALE_AF.split(",")[0] !== "0")
                                     dataFieldsDEL.FEMALE_AF = dataFields.FEMALE_AF.split(",")[0];
-                                if (dataFields.hasOwnProperty("FEMALE_AF") && dataFields.FEMALE_AF.split(",")[0] != "0")
+                                if (dataFields.hasOwnProperty("FEMALE_AF") && dataFields.FEMALE_AF.split(",")[0] !== "0")
                                     dataFieldsDEL.FEMALE_AC = dataFields.FEMALE_AC.split(",")[0];
                             }
 
                             // add DUP and DEL
-                            if (dataFieldsDUP.AF != "0")
+                            if (dataFieldsDUP.AF !== "0")
                                 listDataFieldsFinal.push( Object.assign({}, dataFieldsDUP));
-                            if (dataFieldsDEL.AF != "0")
+                            if (dataFieldsDEL.AF !== "0")
                                 listDataFieldsFinal.push( Object.assign({}, dataFieldsDEL));
                         } else
                             listDataFieldsFinal.push( Object.assign({}, dataFields));
@@ -591,7 +591,7 @@ export default class Igv extends React.Component {
                     let elto = Object.assign({}, track.featureSource.config.resultsField);
                     let numCNVs = 0;
                     popoverData.forEach(function (pD) {
-                        if (pD.name === "Sample" && numCNVs != 0) {
+                        if (pD.name === "Sample" && numCNVs !== 0) {
                             // if (pD.hasOwnProperty("html")  && pD.html.indexOf("dotted") == -1 ) {
                             // add to list
                             listDataFields.push(Object.assign({}, elto));
@@ -623,11 +623,11 @@ export default class Igv extends React.Component {
                             "<tr> <th >Chromosome</th><td>" + dataFields.chr + "</td></tr>" +
                             "<tr> <th >Locus</th><td>" + dataFields.start + "-" + dataFields.end + getNumBase( dataFields.start, dataFields.end )+"</td> </tr>" +
                             "<tr> <th >Type</th><td>" + dataFields.ty  + "</td> </tr>" +
-                            "<tr> <th >Sample</th><td>" + (dataFields.sampleName != undefined ? dataFields.sampleName : "")+ "</td></tr>" +
+                            "<tr> <th >Sample</th><td>" + (dataFields.sampleName !== undefined ? dataFields.sampleName : "")+ "</td></tr>" +
                             "<tr> <th>Score</th> <td class=\"igv-popover-td\">" + dataFields.score + "</td> </tr>" +
                             "<tr> <th>Frequency overlap</th> <td class=\"igv-popover-td\">" + dataFields.freqOverlap + "</td> </tr>" ;
 
-                        if(dataFields["num_copy"] != undefined && dataFields["num_copy"] !== "")
+                        if(dataFields["num_copy"] !== undefined && dataFields["num_copy"] !== "")
                             markup +="<tr> <th>Num copy</th> <td>" + dataFields["num_copy"] + "</td></tr>" ;
 
                         if (i+1 < listDataFields.length)
@@ -734,12 +734,12 @@ export default class Igv extends React.Component {
 
     // If change filters
     let listPreviosTracksCNVs =  this.props.tracks
-          .filter(t => t.name == 'CNVs');
+          .filter(t => t.name === 'CNVs');
     let listNextTracksCNVs =  props.tracks
-          .filter(t => t.name == 'CNVs');
+          .filter(t => t.name === 'CNVs');
      if (listPreviosTracksCNVs.length > 0 &&
          listNextTracksCNVs.length > 0 &&
-         listPreviosTracksCNVs[0].source.body != listNextTracksCNVs[0].source.body){
+         listPreviosTracksCNVs[0].source.body !== listNextTracksCNVs[0].source.body){
          let tracksUpdate =  this.browser.trackViews
              .filter(view => view.track.id === 'CNVs')
              .map(view => view.track);
@@ -889,9 +889,9 @@ function getTracks(props) {
     // return props.tracks;props.showGenes ? props.tracks.concat(genesTrack) : props.tracks
 
     return props.tracks.sort(function(a, b){
-        if(a.order == null && b.order == null) return 1;
-        if(a.order == null && b.order != null) return -1;
-        if(a.order != null && b.order == null) return 1;
+        if((a.order === null && b.order === null) || (a.order === undefined && b.order === undefined)) return 1;
+        if((a.order === null && b.order !== null) ||(a.order === undefined && b.order !== undefined) ) return -1;
+        if((a.order !== null && b.order === null) || a.order !== undefined && b.order === undefined) return 1;
         if (a.order > b.order) return 1;
         if (a.order < b.order) return -1;
         return 0;

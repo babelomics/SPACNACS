@@ -15,10 +15,10 @@ const mapStateToProps = state => ({
     //numSamples: !!EntitiesQuerist.entity(state, "analysis") && !!EntitiesQuerist.entity(state, "analysis").samplesFiles &&
 	//EntitiesQuerist.entity(state, "analysis").samplesFiles.length || 0
     filters: { genomicRegions: VariantFilterQuerist.genomic.genomicRegions(state),
-               genes: VariantFilterQuerist.search.search(state).filter(x=> x.annotationField == "gene"),
+               genes: VariantFilterQuerist.search.search(state).filter(x=> x.annotationField === "gene"),
                variantTypes:VariantFilterQuerist.genomic.variantTypes(state),
                clinvars: VariantFilterQuerist.clinical.clinvars(state),
-               phenotypes: VariantFilterQuerist.search.search(state).filter(x=> x.annotationField != "gene" && x.annotationField != "all"),
+               phenotypes: VariantFilterQuerist.search.search(state).filter(x=> x.annotationField !== "gene" && x.annotationField !== "all"),
                populationFrequency: VariantFilterQuerist.populationFrequency.populationFilters(state, "Spanish CNVs DB") || [],
                genders:VariantFilterQuerist.samples.genders(state) || [],
                phenotypesSamples: VariantFilterQuerist.samples.phenotypesSample(state) || [],
@@ -85,7 +85,7 @@ const mapDispatchToProps = dispatch => ({
         //dispatch(InteractiveInterpretatorActions.variants.locusVariant(region.split(":")[0]));
         console.log("locusVariantActual", locusVariantActual, region);
         let newRegion = region;
-        if (locusVariantActual == region)
+        if (locusVariantActual === region)
             newRegion = region.split(":")[0] + ":" + (parseInt(region.split(":")[1].split("-")[0]) - 1) + "-" + (parseInt(region.split(":")[1].split("-")[1]) +1);
         dispatch(InteractiveInterpretatorActions.variants.locusVariant(newRegion));
 

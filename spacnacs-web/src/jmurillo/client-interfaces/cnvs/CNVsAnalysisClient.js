@@ -73,7 +73,7 @@ class CNVsAnalysisClient {
                 }
             }).then(analyses =>
                 analyses.result.map(analysis =>
-                    CNVsAnalysisClient.translateFromServer(userId, analysis)).sort((a, b) => (a.creationDate != undefined && a.creationDate > b.creationDate) ? -1 : 1)
+                    CNVsAnalysisClient.translateFromServer(userId, analysis)).sort((a, b) => (a.creationDate !== undefined && a.creationDate > b.creationDate) ? -1 : 1)
 
             );
         } else {

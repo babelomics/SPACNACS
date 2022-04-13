@@ -52,18 +52,18 @@ function showDataGraphic (data){
         return "";
     let jsonData = JSON.parse(data);
     let i = 0;
-    console.log(jsonData);
+    //console.log(jsonData);
     if (jsonData.hasOwnProperty("results")) {
         jsonData.results.forEach(d => {
             d.start = d.start - 1;
         });
-        console.log(jsonData);
+        //console.log(jsonData);
         return jsonData.results;
     } else {
         jsonData.forEach(d => {
             d.start = d.start - 1;
         });
-        console.log(jsonData);
+       // console.log(jsonData);
         return jsonData;
     }
     return jsonData;
@@ -86,11 +86,11 @@ function translateFilterToServer( filter, options) {
     if (!!filter && !!filter.phenotypes && 0 < filter.phenotypes.length) {
         //serverFilter['phenotypes'] = filter.phenotypes;
         filter.phenotypes.forEach(s => {
-            if (s.annotationField == "all") {
-                if (s.searchText != "")
+            if (s.annotationField === "all") {
+                if (s.searchText !== "")
                     serverFilter[s.annotationField] = s.searchText;
             } else {
-                if (serverFilter[s.annotationField] == undefined)
+                if (serverFilter[s.annotationField] === undefined)
                     serverFilter[s.annotationField] = []
                 serverFilter[s.annotationField].push(s.id);
             }
@@ -165,8 +165,8 @@ function translateFilterToServer( filter, options) {
     const outFilters = [];
     if (!!filter && !!filter.populationFrequency && filter.populationFrequency.length > 0) {
         filter.populationFrequency.forEach(popFreq =>{
-            if ((isNumberStringValid(popFreq.min) || popFreq.min == "") &&
-                (isNumberStringValid(popFreq.max) || popFreq.max=="") && (popFreq.min !="" || popFreq.max !="") ) {
+            if ((isNumberStringValid(popFreq.min) || popFreq.min === "") &&
+                (isNumberStringValid(popFreq.max) || popFreq.max ==="") && (popFreq.min !== "" || popFreq.max !== "") ) {
                 console.log("popFreq"+popFreq)
                 outFilters.push(popFreq);
             }
@@ -234,7 +234,7 @@ const ViewerManager = (props) => {
         const l = {
             c: props.locusVariant.split(":")[0]
         };
-        if (p!= undefined){
+        if (p !== undefined) {
             l.s = p.split("-")[0];
             l.e = p.split("-")[1];
 

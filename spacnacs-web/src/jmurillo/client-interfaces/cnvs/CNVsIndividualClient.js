@@ -1,7 +1,7 @@
 import CNVsCommonClient from "./CNVsCommonClient";
 
-import OpencgaIndividualClient from "../opencga/OpencgaIndividualClient";
-import CNVFileClient from "./CNVsFileClient";
+//import OpencgaIndividualClient from "../opencga/OpencgaIndividualClient";
+//import CNVFileClient from "./CNVsFileClient";
 import Client from "./../Client";
 
 class CNVsIndividualClient {
@@ -65,14 +65,15 @@ class CNVsIndividualClient {
 
 
     static translateFromServerIndividualSample(userId, projectId, studyId, result) {
-        let listSamplesId = [];
+       // let listSamplesId = [];
         let listSamples = [];
 
         if (!!result.individual.samples) {
             let newSamples = [];
             result.individual.samples.forEach( sId => {
                 let sIndiv = sId;
-                let sampleSearch = Client.instance.file.fetchData(userId, projectId, studyId, sId.id, undefined, undefined).then(
+                //let sampleSearch =
+                Client.instance.file.fetchData(userId, projectId, studyId, sId.id, undefined, undefined).then(
 
                     file => {
                         sIndiv.nameFile = file.nameFile;
@@ -89,8 +90,8 @@ class CNVsIndividualClient {
         if (!!result.individual.samples) {
             let newSamples = [];
             result.individual.samples.forEach(sIndiv => {
-                let index = listSamples.findIndex(s => s.sampleId == sIndiv.id);
-                if (index != -1) {
+                let index = listSamples.findIndex(s => s.sampleId === sIndiv.id);
+                if (index !== -1) {
                     sIndiv.nameFile = listSamples[index].nameFile;
                     sIndiv.technology = listSamples[index].technology;
                     sIndiv.scopeTechnology = listSamples[index].scopeTechnology;
@@ -129,7 +130,7 @@ class CNVsIndividualClient {
                 }
             }).then(analyses =>
                 analyses.result.map(individual =>
-                    CNVsIndividualClient.translateFromServer(userId, individual)).sort((a, b) => (a.creationDate != undefined && a.creationDate > b.creationDate) ? -1 : 1)
+                    CNVsIndividualClient.translateFromServer(userId, individual)).sort((a, b) => (a.creationDate !== undefined && a.creationDate > b.creationDate) ? -1 : 1)
             );
         } else {
             return Promise.reject("no-session");

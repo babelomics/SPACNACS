@@ -384,7 +384,7 @@ function reducer(state = defaultState, action) {
                 genders: [...state.genders, action.gender],
                 };
         case ActionTypes.REMOVE_SAMPLE_GENDER:
-            return !state.genders.find(g => g.id == action.gender.id) ? state : {
+            return !state.genders.find(g => g.id === action.gender.id) ? state : {
                 ...state,
                 genders: state.genders.filter(g => g.id !== action.gender.id),
             };
@@ -409,7 +409,7 @@ function reducer(state = defaultState, action) {
                 };
 
         case ActionTypes.REMOVE_SAMPLE_SUBPOPULATION:
-            return !state.subpopulations.find(s => s.id == action.subpopulation.id) ? state : {
+            return !state.subpopulations.find(s => s.id === action.subpopulation.id) ? state : {
                 ...state,
                 subpopulations: state.subpopulations.filter(s => s.id !== action.subpopulation.id),
             };

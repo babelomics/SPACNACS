@@ -36,10 +36,10 @@ class CNVsCommonClient {
             `userId=${userId}`
         ];
 
-        if (filters.searchText != undefined && filters.searchText !== "")
+        if (filters.searchText !== undefined && filters.searchText !== "")
             queryStrings.push(`searchText=${filters.searchText}`);
 
-        if (filters.sortField != undefined && filters.sortField !== "")
+        if (filters.sortField !== undefined && filters.sortField !== "")
             queryStrings.push(`sort=${filters.sortField}`);
 
         return queryStrings;
@@ -61,7 +61,7 @@ class CNVsCommonClient {
 
             const queryStrings = [
                 `userId=${userId}`
-            ];            if (typeTags != undefined &&typeTags !== "")
+            ];            if (typeTags !== undefined &&typeTags !== "")
                 queryStrings.push(`typeTag=${typeTags}`);
 
             const url = `${this.parent.cnvsUrl}/filters/tags?${queryStrings.join("&")}`;

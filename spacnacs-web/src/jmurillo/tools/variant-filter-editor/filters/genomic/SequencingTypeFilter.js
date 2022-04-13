@@ -21,13 +21,13 @@ const SequencingTypeFilter = ({ filterSequencingTypes, addFilterSequencingTypes,
 
     const handleChange = (event, checked) => {
         if (!!checked) {
-            addFilterSequencingTypes(sequencingTypes.find(s => s.id == event.target.value));
+            addFilterSequencingTypes(sequencingTypes.find(s => s.id === event.target.value));
         } else {
-            removeFilterSequencingTypes(sequencingTypes.find(s => s.id == event.target.value));
+            removeFilterSequencingTypes(sequencingTypes.find(s => s.id === event.target.value));
         }
     };
     function getIsChecked(id, sequencingTypes) {
-        return !!sequencingTypes.find(s => s.id == id);
+        return !!sequencingTypes.find(s => s.id === id);
     }
 
 	return(<React.Fragment>

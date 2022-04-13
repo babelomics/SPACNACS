@@ -38,23 +38,23 @@ class DownloadManager extends React.PureComponent {
         const file = getUrlParam(this.props, "file");
         return (
             <div>
-                {file == "legend" && <a href={legend} download={file}>{file}</a>}
-                {file == "hg19" && <a href={hg19} download={file}>{file}</a>}
-                {file == "gnomad" && <a href={gnomad} download={file}>{file}</a>}
-                {file == "gnomadIndex" && <a href={gnomadIndex} download={file}>{file}</a>}
+                {file === "legend" && <a href={legend} download={file}>{file}</a>}
+                {file === "hg19" && <a href={hg19} download={file}>{file}</a>}
+                {file === "gnomad" && <a href={gnomad} download={file}>{file}</a>}
+                {file === "gnomadIndex" && <a href={gnomadIndex} download={file}>{file}</a>}
                 {/*file == "gnomad_summary" && <a href={gnomad_summary} download={file}>{file}</a>*/}
 
-                {file == "regulatoryFeatures" && <a href={regulatoryFeatures} download={file}>{file}</a>}
-                {file == "regulatoryFeaturesIndex" && <a href={regulatoryFeaturesIndex} download={file}>{file}</a>}
-                {file == "cytoBand" && <a href={cytoBand} download={file}>{file}</a>}
-                {file == "cytoBandColor" && <a href={cytoBandColor} download={file}>{file}</a>}
+                {file === "regulatoryFeatures" && <a href={regulatoryFeatures} download={file}>{file}</a>}
+                {file === "regulatoryFeaturesIndex" && <a href={regulatoryFeaturesIndex} download={file}>{file}</a>}
+                {file === "cytoBand" && <a href={cytoBand} download={file}>{file}</a>}
+                {file === "cytoBandColor" && <a href={cytoBandColor} download={file}>{file}</a>}
 
-                {file == "1000K" && <a href={_1000K} download={file}>{file}</a>}
-                {file == "1000KIndex" && <a href={_1000KIndex} download={file}>{file}</a>}
-                {file == "legendRegulatoryFeatures" && <a href={legendRegulatoryFeatures} download={file}>{file}</a>}
+                {file === "1000K" && <a href={_1000K} download={file}>{file}</a>}
+                {file === "1000KIndex" && <a href={_1000KIndex} download={file}>{file}</a>}
+                {file === "legendRegulatoryFeatures" && <a href={legendRegulatoryFeatures} download={file}>{file}</a>}
 
-                {file == "clinicalSignificance" && <a href={clinicalSignificance} download={file}>{file}</a>}
-                {file == "clinicalSignificanceTmp" && <a href={clinicalSignificanceTmp} download={file}>{file}</a>}
+                {file === "clinicalSignificance" && <a href={clinicalSignificance} download={file}>{file}</a>}
+                {file === "clinicalSignificanceTmp" && <a href={clinicalSignificanceTmp} download={file}>{file}</a>}
             </div>);
     }
 

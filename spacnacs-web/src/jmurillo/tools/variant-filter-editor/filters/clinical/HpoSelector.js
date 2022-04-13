@@ -160,7 +160,7 @@ class HpoSelector extends React.Component {
 								{
 									0 === newResults.length && (
 										<TableRow>
-											<TableCell colSpan={5}>
+											<TableCell colSpan={3}>
 												No results for query.
 											</TableCell>
 										</TableRow>

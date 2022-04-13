@@ -30,7 +30,7 @@ const mapDispatchToProps = dispatch => ({
         dispatch(VariantTableActions.clean());
 	},
     addAnnotation: (term) => {
-        if (term.annotationField == "all")
+        if (term.annotationField === "all")
             dispatch(VariantFilterActions.search.set(term));
         else {
             // Remove other positions

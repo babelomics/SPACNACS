@@ -123,9 +123,9 @@ class GenomicRegionsFilter extends React.Component {
 
     removeTerm(term){
         console.log(term);
-        if (term.annotationField == "all")
+        if (term.annotationField === "all")
             term.searchText = "";
-        this.props.removeGenomicRegion(term.constructor.name == "Array" ? term[0] : term);
+        this.props.removeGenomicRegion(term.constructor.name === "Array" ? term[0] : term);
     }
 
     onClearRegion(event){
@@ -157,16 +157,16 @@ class GenomicRegionsFilter extends React.Component {
 		if (!chromosomePattern.test(chromosome.toLowerCase().trim()))
 			return false;
 
-        if (start == undefined || end == undefined)
+        if (start === undefined || end === undefined)
         	return false;
 
-		if (start != -1 && !integerPattern.test(start.trim()))
+		if (start !== -1 && !integerPattern.test(start.trim()))
 			return false;
 
-		if (end != -1 &&  !integerPattern.test(end.trim()))
+		if (end !== -1 &&  !integerPattern.test(end.trim()))
 			return false;
 
-		if (start != -1 && end != -1 && parseInt(start) > parseInt(end))
+		if (start !== -1 && end !== -1 && parseInt(start) > parseInt(end))
 			return false;
 
 		return true;

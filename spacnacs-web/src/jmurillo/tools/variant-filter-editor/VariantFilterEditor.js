@@ -74,13 +74,13 @@ const VariantFilterEditor = ({ activeEditor, selectEditor, numSamples }) => {
             if (!f.hasOwnProperty("showNumSample"))
                 uiFiltersShow[key] = f;
 
-            if (!!f.hasOwnProperty("showNumSample") && f.showNumSample == 1 && numSamples == 1)
+            if (!!f.hasOwnProperty("showNumSample") && f.showNumSample === 1 && numSamples === 1)
                 uiFiltersShow[key] = f;
 
-            if (!!f.hasOwnProperty("showNumSample") && f.showNumSample == 2 && numSamples >= 2)
+            if (!!f.hasOwnProperty("showNumSample") && f.showNumSample === 2 && numSamples >= 2)
                 uiFiltersShow[key] = f;
 
-            if (key == activeEditor && !uiFiltersShow.hasOwnProperty(key))
+            if (key === activeEditor && !uiFiltersShow.hasOwnProperty(key))
                 selectNewActive = true;
         });
     }

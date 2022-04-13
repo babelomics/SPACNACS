@@ -1,7 +1,7 @@
 import React from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import {render} from 'react-dom';
+//import PropTypes from "prop-types";
+//import { connect } from "react-redux";
+//import {render} from 'react-dom';
 
 import StateQuerist from "./state-querist";
 //import VariantFilterActions from "../variant-filter/actions";

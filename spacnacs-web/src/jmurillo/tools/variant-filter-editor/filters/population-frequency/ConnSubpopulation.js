@@ -16,7 +16,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 		if (!isNaN(min) || !isNaN(max)) {
 			const filter = { population: ownProps.population, subpopulation: ownProps.subpopulation };
 
-			if(min == "" && max == ""){
+			if(min === "" && max === ""){
                 dispatch(VariantFilterActions.populationFrequency.removeFilter(ownProps.population, ownProps.subpopulation));
 			} else {
                 if (!isNaN(min)) {

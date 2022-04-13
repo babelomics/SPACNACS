@@ -16,7 +16,7 @@ const reducer = (state = defaultState, action) => {
               return {...state, search: state.search.filter(term => (term.annotationField === "all" || term.annotationField === "gene"))};
 
               case ActionTypes.CLEAN_GENE:
-              return {...state, search: state.search.filter(term => (term.annotationField != "gene"))};
+              return {...state, search: state.search.filter(term => (term.annotationField !== "gene"))};
 
           case ActionTypes.SET:
               return {...state, search: state.search.includes(action.searchTerm) ? state.search : [ ...state.search, action.searchTerm ]};
@@ -26,10 +26,10 @@ const reducer = (state = defaultState, action) => {
               return {...state, search: state.search.includes(action.searchTerm) ? state.search : [ ...state.search, action.searchTerm ]};
 
           case ActionTypes.REMOVE:
-              if (action.searchTerm.annotationField == "all")
+              if (action.searchTerm.annotationField === "all")
                   return {...state, search: state.search.includes(action.searchTerm) ? state.search : [ ...state.search, action.searchTerm ]};
               else
-                  return {...state, search: state.search.filter(term => (term.id == undefined || action.searchTerm.id !== term.id || (action.searchTerm.id !== term.id && term.annotationField != action.searchTerm.annotationField)))};
+                  return {...state, search: state.search.filter(term => (term.id === undefined || action.searchTerm.id !== term.id || (action.searchTerm.id !== term.id && term.annotationField !== action.searchTerm.annotationField)))};
 
 
           case ActionTypes.SET_SORT:

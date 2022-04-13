@@ -140,7 +140,7 @@ const MenuHelp = () => {
                 }}
 			>
                 <div className={classes.info}>
-                    {optionMenu == "version" && <div>
+                    {optionMenu === "version" && <div>
                         <h3>Database versions:</h3>
                         <table className={classes.tableVersion}>
                             <tr>
@@ -203,7 +203,7 @@ const MenuHelp = () => {
                         <p></p>
 
                     </div>*/}
-                    {optionMenu == "contact" && <div >
+                    {optionMenu === "contact" && <div >
                         <h3>Contact</h3>
                         <p>Fundación Progreso y Salud</p>
                         <p>Clinical Bioinformatics Area, FPS</p>

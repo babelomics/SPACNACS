@@ -30,10 +30,10 @@ class CNVsAnnotationsClient {
             annotationField: annotationField
         };
         let desc = "";
-        if(annotationField == "gene"){
+        if(annotationField === "gene"){
             if (!!term.hgncs){
               term.hgncs.forEach(h => {
-                  if (h.listSynonym != null)
+                  if (h.listSynonym !== null && h.listSynonym != undefined)
                     desc = h.listSynonym.join(", ");
               });
             }
@@ -68,6 +68,8 @@ class CNVsAnnotationsClient {
             case "disgenet":
                 outTerm.id = term.diseaseId;
                 outTerm.name = term.diseaseName;
+                break;
+            default:
                 break;
         }
         return outTerm;
@@ -181,10 +183,10 @@ class CNVsAnnotationsClient {
 */
 
         const formData = new FormData();
-        if (individualsSamples.fileIndividualsSamples != null) {
+        if (individualsSamples.fileIndividualsSamples !== null && individualsSamples.filesCNVs != undefined) {
             formData.append("fileIndividualsSamples", individualsSamples.fileIndividualsSamples);
         }
-        if (individualsSamples.filesCNVs != null) {
+        if (individualsSamples.filesCNVs !== null && individualsSamples.filesCNVs != undefined) {
             for (var i = 0; i < individualsSamples.filesCNVs.length; i++)
                 formData.append("filesCNVs", individualsSamples.filesCNVs[i]);
             //formData.append("filesCNVs[]", individualsSamples.filesCNVs);
@@ -234,7 +236,7 @@ class CNVsAnnotationsClient {
             `searchText=${searchTextParam}`
 
         ];
-        if (page != undefined){
+        if (page !== undefined){
             queryStrings.push("page="+page);
             queryStrings.push("pageSize="+pageSize);
         }

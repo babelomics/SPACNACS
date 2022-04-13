@@ -57,10 +57,10 @@ function translateCnvGene(cnv) {
     	annotations.filter(annotation => !!annotation.genes && annotation.genes).forEach(ann => {
             let resumeAnnGenes = ann.genes.map(g => {
             	let gr = {geneSymbol: g.geneSymbol, hgncId: g.hgncId};
-            	if (g.hgncs != null){
+            	if (g.hgncs !== null && g.hgncs !== undefined){
                     gr.listSynonyms=[];
             		g.hgncs.map(h => {
-            			if (h.listSynonym != null){
+            			if (h.listSynonym !== null && h.listSynonym !== undefined){
 
 							gr.listSynonyms.push(...h.listSynonym);
 						}
@@ -263,7 +263,7 @@ function translateFilterToServer(userId,  filter) {
                     if (s.searchText !== "")
                         serverFilter[s.annotationField] = s.searchText;
                 } else {
-                    if (serverFilter[s.annotationField] == undefined)
+                    if (serverFilter[s.annotationField] === undefined)
                         serverFilter[s.annotationField] = []
                     serverFilter[s.annotationField].push(s.id);
                 }

@@ -81,7 +81,7 @@ class CNVsFileClient {
         if ( !!this.parent.session.getToken(userId)  && !!userId) {
 
             const queryStrings = CNVsCommonClient.getQuerString(userId, pageFilters, filters);
-            if (filters.individualId != undefined && filters.individualId !== "")
+            if (filters.individualId !== undefined && filters.individualId !== "")
                 queryStrings.push(`individualId=${filters.individualId}`);
             // const userParam = encodeURIComponent(userId);
             // const projectParam = encodeURIComponent(projectId);
@@ -373,10 +373,10 @@ class CNVsFileClient {
 */
 
         const formData = new FormData();
-        if (individualsSamples.fileIndividualsSamples != null) {
+        if (individualsSamples.fileIndividualsSamples !== null && individualsSamples.fileIndividualsSamples != undefined) {
             formData.append("fileIndividualsSamples", individualsSamples.fileIndividualsSamples);
         }
-        if (individualsSamples.filesCNVs != null) {
+        if (individualsSamples.filesCNVs !== null && individualsSamples.fileIndividualsSamples != undefined) {
             for (var i = 0; i < individualsSamples.filesCNVs.length; i++)
                 formData.append("filesCNVs", individualsSamples.filesCNVs[i]);
             //formData.append("filesCNVs[]", individualsSamples.filesCNVs);

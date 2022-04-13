@@ -20,13 +20,13 @@ const PipelineFilter = ({ filterPipeline, addFilterPipeline }) => {
 
     const handleChange = (event, checked) => {
         //if (!!checked) {
-            addFilterPipeline(pipelines.find(s => s.id == event.target.value));
+            addFilterPipeline(pipelines.find(s => s.id === event.target.value));
         /*} else {
             removeFilterSequencingTypes(sequencingTypes.find(s => s.id == event.target.value));
         }*/
     };
     function getIsChecked(id, filterPipeline) {
-        return !!filterPipeline && filterPipeline.id == id;
+        return !!filterPipeline && filterPipeline.id === id;
     }
 
 	return(<React.Fragment>

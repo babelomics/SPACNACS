@@ -51,7 +51,7 @@ class OpencgaSampleClient {
             // const page = 0;
             let queryStrings = [];
 
-            if (page != undefined){
+            if (page !== undefined){
                 const skipParam = encodeURIComponent(page * pageSize);
                 const limitParam = encodeURIComponent(pageSize);
                 queryStrings = [
@@ -140,7 +140,7 @@ class OpencgaSampleClient {
             if (!!sample.description)
                 newSample["description"] = sample["description"];
 
-            if (sample.id != undefined)
+            if (sample.id !== undefined)
                 newSample.id = sample.id;
 
             const bodyParams = JSON.stringify(newSample);

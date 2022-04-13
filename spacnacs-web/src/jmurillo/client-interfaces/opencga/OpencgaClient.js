@@ -3,10 +3,10 @@ import OpencgaUserClient from './OpencgaUserClient';
 import OpencgaProjectClient from './OpencgaProjectClient';
 import OpencgaStudyClient from './OpencgaStudyClient';
 import OpencgaVariantClient from './OpencgaVariantClient';
-import OpencgaSampleClient from './OpencgaSampleClient';
+//import OpencgaSampleClient from './OpencgaSampleClient';
 
 import Client from '../Client';
-import OpencgaIndividualClient from "./OpencgaIndividualClient";
+//import OpencgaIndividualClient from "./OpencgaIndividualClient";
 
 class OpencgaClient extends Client {
 

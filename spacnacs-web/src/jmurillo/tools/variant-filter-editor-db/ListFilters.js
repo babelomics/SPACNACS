@@ -112,7 +112,7 @@ const ListFilters = ({filters, onRemoveFilter, onLocus, locusVariantActual}) => 
 
                                             {!!term.description &&
                                             <li>
-                                                {term.annotationField == "gene" && !!term.description &&
+                                                {term.annotationField === "gene" && !!term.description &&
                                                 <span>Synonyms: {term.description}</span>
                                                 }
                                             </li>
@@ -162,10 +162,10 @@ const ListFilters = ({filters, onRemoveFilter, onLocus, locusVariantActual}) => 
 
                                             {!!term.description &&
                                             <li>
-                                                {term.annotationField == "gene" &&
+                                                {term.annotationField === "gene" &&
                                                 <span>Synonyms: {term.description}</span>
                                                 }
-                                                {term.annotationField != "gene" &&
+                                                {term.annotationField !== "gene" &&
                                                 <span>Description: {term.description}</span>
                                                 }
 
@@ -188,12 +188,12 @@ const ListFilters = ({filters, onRemoveFilter, onLocus, locusVariantActual}) => 
                 {
                     filters.populationFrequency.map(f => {
                         let label = `${f.population} frequency: `;
-                        if (f.min != undefined && f.min != "")
+                        if (f.min !== undefined && f.min !== "")
                             label = label + `${f.min}`;
                         else
                             label = label + `0`;
                         label = label + "-";
-                        if (f.max != undefined && f.max != "")
+                        if (f.max !== undefined && f.max !== "")
                             label = label + `${f.max}`;
                         else
                             label = label + `1`;

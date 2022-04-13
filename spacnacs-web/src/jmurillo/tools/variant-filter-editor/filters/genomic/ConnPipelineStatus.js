@@ -6,7 +6,7 @@ import VariantFilterQuerist from '../../../variant-filter/state-querist';
 
 
 const mapStateToProps = state => ({
-    active: VariantFilterQuerist.genomic.pipeline(state) != null,
+    active: VariantFilterQuerist.genomic.pipeline(state) !== null || VariantFilterQuerist.genomic.pipeline(state) !== undefined,
 });
 
 

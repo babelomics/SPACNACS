@@ -83,7 +83,7 @@ class AnnotationSelector extends React.Component {
 		//this.state.results.filter(hpTerm => !this.state.selected.some(term => term.id === term.id));
 
         const selected =  (!!this.props.search && this.props.search.filter(annotation =>
-			annotation.annotationField != "all" &&  annotation.annotationField != "gene"  && annotation.searchText != ""
+			annotation.annotationField !== "all" &&  annotation.annotationField !== "gene"  && annotation.searchText !== ""
         )) || [];
 
         /*const selected = (!!this.state.selected && this.state.selected.map(annotation => {
@@ -114,10 +114,10 @@ class AnnotationSelector extends React.Component {
 
                                     {!!term.description &&
 									<li>
-                                        {term.annotationField == "gene" &&
+                                        {term.annotationField === "gene" &&
 										<span>Synonyms: ${term.description}</span>
                                         }
-                                        {term.annotationField != "gene" &&
+                                        {term.annotationField !== "gene" &&
 										<span>Description: {term.description}</span>
                                         }
 									</li>
@@ -162,7 +162,7 @@ class AnnotationSelector extends React.Component {
             <div  style={{ backgroundColor:"#efefefef", width: "100%"}}>
 				{
 					//3 < this.state.searchText.length && this.state.annotationField != "all" &&
-					(this.state.numTotalResults > 0 || (this.state.numTotalResults==0 && this.state.annotationField != "all" && this.state.searchText.length>0) )&&
+					(this.state.numTotalResults > 0 || (this.state.numTotalResults==0 && this.state.annotationField !== "all" && this.state.searchText.length>0) )&&
 					(
 						<div >
 
@@ -182,7 +182,7 @@ class AnnotationSelector extends React.Component {
 								{
 									0 === newResults.length && (
 										<TableRow>
-											<TableCell colSpan={5}>
+											<TableCell colSpan={3}>
 												No results for query.
 											</TableCell>
 										</TableRow>
@@ -197,10 +197,10 @@ class AnnotationSelector extends React.Component {
 														<ul>
 															<li>Id: {term.id}</li>
 															<li>Name: {term.name}</li>
-                                                            {term.annotationField != "go" && !!term.description &&
+                                                            {term.annotationField !== "go" && !!term.description &&
 															<li>Description / Synonyms: {term.description}</li>
                                                             }
-                                                            {term.annotationField == "go" && !!term.description &&
+                                                            {term.annotationField === "go" && !!term.description &&
 															<li>Type function: {term.description}</li>
                                                             }
 														</ul>
@@ -209,21 +209,31 @@ class AnnotationSelector extends React.Component {
 												</HtmlTooltip>
 
 											</TableCell>
-											<TableCell style={{overflowWrap: "break-word"}}>
+											<TableCell style={{
+											overflowWrap: "break-word"
+
+											}}>
 												<HtmlTooltip title={
 													<React.Fragment>
 														<ul>
 															<li>Id: {term.id}</li>
 														<li>Name: {term.name}</li>
-                                                        {term.annotationField != "go" && !!term.description &&
+                                                        {term.annotationField !== "go" && !!term.description &&
 															<li>Description / Synonyms: {term.description}</li>
                                                         }
-                                                        {term.annotationField == "go" && !!term.description &&
+                                                        {term.annotationField === "go" && !!term.description &&
 															<li>Type function: {term.description}</li>
                                                         }
 														</ul>
 													</React.Fragment>}>
-													<span>{term.name}</span>
+													<span style={{
+                                                             maxWidth: '100%',
+                                                            textOverflow:"ellipsis",
+                                                                overflow:"hidden",
+                                                                display: "-webkit-box",
+                                                                WebkitBoxOrient: 'vertical',
+                                                                WebkitLineClamp: 15,
+                                                            }}>{term.name}</span>
 												</HtmlTooltip>
 											</TableCell>
 
@@ -268,7 +278,7 @@ class AnnotationSelector extends React.Component {
 		);
 	}
 
-    isChecked = (termId) => this.state.annotationField == termId ? true : false;
+    isChecked = (termId) => this.state.annotationField === termId ? true : false;
 
     handleChangePage(event, newPage){
         /*this.setState({
@@ -295,12 +305,13 @@ class AnnotationSelector extends React.Component {
 			searchText: value,
             annotationField: annotationField,
 			results: [],
-            numTotalResults: 0
+            numTotalResults: 0,
+            page:0
 		}, ()=>{
-            if (0 < value.length && annotationField != "all") {
+            if (0 < value.length && annotationField !== "all") {
                 this.searchText();
             }
-            if (annotationField == "all"){
+            if (annotationField === "all"){
                 this.props.addAnnotation({
                     searchText:value,
                     annotationField:annotationField,
@@ -360,7 +371,7 @@ class AnnotationSelector extends React.Component {
 
 
 	removeTerm(term){
-		if(term.annotationField == "all")
+		if(term.annotationField === "all")
 			term.searchText = "";
 		this.props.removeAnnotation(term);
 		this.setState({
@@ -398,7 +409,7 @@ class AnnotationSelector extends React.Component {
 			});*/
         const pThis = this;
 
-        if (page == null)
+        if (page === null || page === undefined)
             page = this.state.page;
 
 		Client.instance.annotator.searchAnnotationTerm(this.state.annotationField, this.state.searchText, page, this.state.pageSize).then(res =>{

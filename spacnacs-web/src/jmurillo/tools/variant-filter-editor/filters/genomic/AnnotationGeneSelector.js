@@ -84,7 +84,7 @@ class AnnotationGeneSelector extends React.Component {
 		//this.state.results.filter(hpTerm => !this.state.selected.some(term => term.id === term.id));
 
         const selected =  (!!this.props.search && this.props.search.filter(annotation =>
-             annotation.annotationField == "gene"  && annotation.searchText != ""
+             annotation.annotationField === "gene"  && annotation.searchText !== ""
         )) || [];
 
         /*const selected = (!!this.state.selected && this.state.selected.map(annotation => {
@@ -147,7 +147,7 @@ class AnnotationGeneSelector extends React.Component {
             <div  style={{ backgroundColor:"#efefefef", width: "100%"}}>
 				{
 					//3 < this.state.searchText.length && this.state.annotationField != "all" &&
-					(this.state.numTotalResults > 0 || (this.state.numTotalResults==0 && this.state.annotationField != "all" && this.state.searchText.length>0) )&&
+					(this.state.numTotalResults > 0 || (this.state.numTotalResults === 0 && this.state.annotationField !== "all" && this.state.searchText.length>0) )&&
 					(
 						<div >
 
@@ -167,7 +167,7 @@ class AnnotationGeneSelector extends React.Component {
 								{
 									0 === newResults.length && (
 										<TableRow>
-											<TableCell colSpan={5}>
+											<TableCell colSpan={3}>
 												No results for query.
 											</TableCell>
 										</TableRow>
@@ -248,7 +248,7 @@ class AnnotationGeneSelector extends React.Component {
 		);
 	}
 
-    isChecked = (termId) => this.state.annotationField == termId ? true : false;
+    isChecked = (termId) => this.state.annotationField === termId ? true : false;
 
     handleChangePage(event, newPage){
         /*this.setState({
@@ -275,12 +275,13 @@ class AnnotationGeneSelector extends React.Component {
 			searchText: value,
             annotationField: annotationField,
 			results: [],
-            numTotalResults: 0
+            numTotalResults: 0,
+            page:0
 		}, () =>{
-            if (0 < value.length && annotationField != "all") {
+            if (0 < value.length && annotationField !== "all") {
                 this.searchText();
             }
-            if (annotationField == "all"){
+            if (annotationField === "all"){
                 this.props.addAnnotation({
                     searchText:value,
                     annotationField:annotationField,
@@ -341,7 +342,7 @@ class AnnotationGeneSelector extends React.Component {
 
 
 	removeTerm(term){
-		if(term.annotationField == "all")
+		if(term.annotationField === "all")
 			term.searchText = "";
 		this.props.removeAnnotation(term);
 		this.setState({
@@ -379,7 +380,7 @@ class AnnotationGeneSelector extends React.Component {
 			});*/
         const pThis = this;
 
-        if (page == null)
+        if (page === null || page === undefined)
             page = this.state.page;
 
 		Client.instance.annotator.searchAnnotationTerm(this.state.annotationField, this.state.searchText, page, this.state.pageSize).then(res =>{

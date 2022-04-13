@@ -209,7 +209,7 @@ const subpopulations = [
 
 const SubpopulationFilter = ({ filterSubpopulation, addFilterSubpopulation, removeFilterSubpopulation }) => {
     const handleChange = (event, checked) => {
-        let subp = subpopulations.find(g => g.id == event.target.value);
+        let subp = subpopulations.find(g => g.id === event.target.value);
         if (!!checked) {
             addFilterSubpopulation(subp);
         } else {
@@ -218,7 +218,7 @@ const SubpopulationFilter = ({ filterSubpopulation, addFilterSubpopulation, remo
     };
 
     function getIsChecked(id, filterSubpopulation) {
-        return !!filterSubpopulation.find(g => g.id == parseInt(id));
+        return !!filterSubpopulation.find(g => g.id === parseInt(id));
     }
 
     return(<React.Fragment>

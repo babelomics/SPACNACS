@@ -57,7 +57,7 @@ class OpencgaIndividualClient {
                 'samples',
             ];
 
-            const includeParam = encodeURIComponent(fieldsToInclude.join(','));
+            //const includeParam = encodeURIComponent(fieldsToInclude.join(','));
 
 
             // TODO: 1.4.2

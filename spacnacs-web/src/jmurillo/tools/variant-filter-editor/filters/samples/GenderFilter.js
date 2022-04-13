@@ -20,14 +20,14 @@ const genders = [
 const GenderFilter = ({ filterGender, addFilterGender, removeFilterGender}) => {
     const handleChange = (event, checked) => {
         if (!!checked) {
-            addFilterGender(genders.find(g => g.id == event.target.value));
+            addFilterGender(genders.find(g => g.id === event.target.value));
         } else {
-            removeFilterGender(genders.find(g => g.id == event.target.value));
+            removeFilterGender(genders.find(g => g.id === event.target.value));
         }
     };
 
     function getIsChecked(id, filterGender) {
-        return !!filterGender.find(g => g.id == id);
+        return !!filterGender.find(g => g.id === id);
     }
     return(<React.Fragment>
         <div>
