@@ -259,7 +259,7 @@ const ListFilters = ({filters, onRemoveFilter, onLocus, locusVariantActual}) => 
                                      <ul>
                                      {filters.subpopulations.map(f => {
                                        return(  <li>
-                                             {f.label}
+                                             {f.label || ""}
                                          </li>)
                                      })}
                                      </ul>

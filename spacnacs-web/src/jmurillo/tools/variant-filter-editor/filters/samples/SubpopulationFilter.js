@@ -209,7 +209,7 @@ const subpopulations = [
 
 const SubpopulationFilter = ({ filterSubpopulation, addFilterSubpopulation, removeFilterSubpopulation }) => {
     const handleChange = (event, checked) => {
-        let subp = subpopulations.find(g => g.id === event.target.value);
+        let subp = subpopulations.find(g => g.id === parseInt(event.target.value));
         if (!!checked) {
             addFilterSubpopulation(subp);
         } else {

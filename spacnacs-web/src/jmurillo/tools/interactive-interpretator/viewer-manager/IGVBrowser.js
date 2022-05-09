@@ -586,111 +586,59 @@ export default class Igv extends React.Component {
                 return markup;
             }
 
+
                 if ("CNVs" === track.name && !!track.featureSource && !!track.featureSource.config && !!track.featureSource.config.resultsField) {
                     let listDataFields = [];
                     let elto = Object.assign({}, track.featureSource.config.resultsField);
                     let numCNVs = 0;
+
+                    let initElto = {chromosome:"", start: 0, end:0, ty:"", copy:0, score:0, sampleName:"", freqOverlap:0};
+                    elto = Object.assign({}, initElto);
                     popoverData.forEach(function (pD) {
-                        if (pD.name === "Sample" && numCNVs !== 0) {
-                            // if (pD.hasOwnProperty("html")  && pD.html.indexOf("dotted") == -1 ) {
+                        let key = pD !== undefined && pD !== "" && pD.name !== undefined && pD.name !== "" ? pD.name[0].toLowerCase() + pD.name.substring(1): "";
+
+                        if (pD.name === "Chromosome" && numCNVs !== 0) {
                             // add to list
                             listDataFields.push(Object.assign({}, elto));
                             // inicialize
-                            elto = Object.assign({}, track.featureSource.config.resultsField);
+                            elto = Object.assign({}, initElto);
                         }
-                        if (pD.name === "Sample")
+                        if (pD.name === "Chromosome")
                             numCNVs = numCNVs + 1;
 
-                        if (pD.name in elto){
-                            elto[pD.name] = pD.value;
+                        if (pD.name =="Location") {
+                            let re = pD.value.split(":")[1];
+                            elto.start = re.split("-")[0];
+                            elto.end = re.split("-")[1];
                         }
-
+                        if ( key in elto){
+                            elto[key] = pD.value;
+                        }
                     });
-                    // Add last
-                    listDataFields.push(Object.assign({}, elto));
+                    if (numCNVs > 0)
+                        listDataFields.push(Object.assign({}, elto));
 
                     let i = 0;
                     listDataFields.forEach(function (dataFields) {
-                        if (!!dataFields.Locus) {
-                            dataFields.chr = dataFields.Locus.split(":")[0];
-                            let re = dataFields.Locus.split(":")[1];
-                            dataFields.start = re.split("-")[0];
-                            dataFields.end = re.split("-")[1];
-                        }
-
                         markup +=
                             "<tr> <th >DataBase</th><td>Spanish CNVs </td></tr>" +
-                            "<tr> <th >Chromosome</th><td>" + dataFields.chr + "</td></tr>" +
+                            "<tr> <th >Chromosome</th><td>" + dataFields.chromosome + "</td></tr>" +
                             "<tr> <th >Locus</th><td>" + dataFields.start + "-" + dataFields.end + getNumBase( dataFields.start, dataFields.end )+"</td> </tr>" +
                             "<tr> <th >Type</th><td>" + dataFields.ty  + "</td> </tr>" +
                             "<tr> <th >Sample</th><td>" + (dataFields.sampleName !== undefined ? dataFields.sampleName : "")+ "</td></tr>" +
                             "<tr> <th>Score</th> <td class=\"igv-popover-td\">" + dataFields.score + "</td> </tr>" +
                             "<tr> <th>Frequency overlap</th> <td class=\"igv-popover-td\">" + dataFields.freqOverlap + "</td> </tr>" ;
 
-                        if(dataFields["num_copy"] !== undefined && dataFields["num_copy"] !== "")
-                            markup +="<tr> <th>Num copy</th> <td>" + dataFields["num_copy"] + "</td></tr>" ;
+                        if(dataFields.copy !== undefined && dataFields.copy !== "" &&  dataFields.copy !== 0)
+                            markup +="<tr> <th>Num copy</th> <td>" + dataFields.copy+ "</td></tr>" ;
 
                         if (i+1 < listDataFields.length)
                             markup +="<tr><td  colspan='2'><hr></td></tr>";
 
                         i=i+1;
-                        //markup += "<tr><td colspan=2></td></tr>";
 
-                        //markup += "<tr><td colspan='2' \><button onclick=>" + "link  " + cnv + "</button></td></tr>";
-                        //markup += "<tr><td colspan=2> <Button onClick={alert('entra')}>Add filter region</Button></td></tr>";
-                        // track.browser.config.addGenomicRegion(region);
                     });
-
-
                     markup += "</table>";
-
-                    /*popoverData.forEach(function (nameValue) {
-                        if (nameValue.name) {
-                            if (nameValue.name.toLowerCase() === 'chr')
-                                region.chromosome = nameValue.value;
-
-                            if (nameValue.name.toLowerCase() === 'start')
-                                region.start = nameValue.value < region.start ? nameValue.value : region.start;
-
-                            if (nameValue.name.toLowerCase() === 'end')
-                                region.end = nameValue.value > region.end ? nameValue.value : region.end;
-
-                            if (nameValue.name.toLowerCase() === 'location') {
-                                region.chromosome = nameValue.value.split(":")[0].replace("chr","");
-                                let re = nameValue.value.split(":")[1];
-                                region.start = re.split("-")[0].replace(",","");
-                                region.end = re.split("-")[1].replace(",","");
-                            }
-
-                            if (nameValue.name.toLowerCase() == 'dup/del' ||
-                                (nameValue.name.toLowerCase() === "score" && nameValue.value != 0.0) ||
-                                (nameValue.name.toLowerCase() ==="num_coy" && nameValue.value != 0)
-                            ) {
-                                markup += "<tr><td class=\"igv-popover-td\">"
-                                    + "<strong>" + nameValue.name + "</strong>"
-                                    + "</td>"
-                                    + "<td>"
-                                    + nameValue.value
-                                    + "</td>"
-                                    + "</tr>";
-                            }
-
-                        } else {
-                            // not a name/value pair
-                            markup += "<tr><td colspan='2'>" + nameValue.toString() + "</td></tr>";
-                        }
-                    });*/
-
-                    //markup += "<tr><td colspan=2></td></tr>";
-
-
-                    //markup += "<tr><td colspan='2' \><button onclick=>" + "link  " + cnv + "</button></td></tr>";
-                   //markup += "<tr><td colspan=2> <Button onClick={alert('entra')}>Add filter region</Button></td></tr>";
-                   // track.browser.config.addGenomicRegion(region);
-
-
-                    markup += "</table>";
-
 
                     // By returning a string from the trackclick handler we're asking IGV to use our custom HTML in its pop-over.
                     return markup;
