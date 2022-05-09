@@ -554,11 +554,39 @@ export default class Igv extends React.Component {
                         // inicialize
                         elto = Object.assign({}, track.featureSource.config.resultsField);
                     }
-                    let key = pD.name !== undefined ? pD.name.replace(":","") : pD.name;
+                    let key = pD !== undefined && pD !== "" && pD.name !== undefined && pD.name !== "" ? pD.name[0].toLowerCase() + pD.name.substring(1): "";
+                    key = key !== undefined ? key.replace(":","") : key;
+
                     if (key in elto){
                         elto[key] = pD.value;
                     }
+
+                    // Update id
+                    if (key === "location"){
+                        elto["chr"] = pD.value.split(":")[0];
+                        elto["start"] = parseInt(pD.value.replaceAll(",","").split(":")[1].split("-")[0]);
+                        elto["end"] = parseInt(pD.value.replaceAll(",","").split(":")[1].split("-")[1]);
+
+                         track.featureSource.getFeatures({chr: elto.chr,
+                                start: elto.start, end: elto.end}).then(features =>
+
+                                        features.forEach(function (feature, index) {
+                                            let position = listDataFields.findIndex(function(itm){
+                                                  return feature.chr === itm.chr &&
+                                                        feature.start+1 === itm.start &&
+                                                         feature.end === itm.end &&
+                                                         feature.type === itm.type;
+                                                    })
+                                            if (position !== -1){
+                                                listDataFields[position].id= feature.id;
+                                                document.getElementById("dataFieldsId"+position).innerHTML= feature.id;
+                                                }
+                                            })
+                                )
+                    }
                 });
+
+
                 // Add last
                 listDataFields.push(Object.assign({}, elto));
 
@@ -566,9 +594,9 @@ export default class Igv extends React.Component {
                 listDataFields.forEach(function (dataFields) {
                     markup +=
                         "<tr> <th >DataBase</th><td colspan='4' style='text-align:left;padding-left:10px'>"+track.name+"</td></tr>" +
-                        "<tr><th >Position</th><td colspan='4' style='text-align:left;padding-left:10px'>" + dataFields.position + "</td></tr>" +
-                        "<tr><th >Description</th><td colspan='4' style='text-align:left;padding-left:10px'>" + dataFields.description + "</td> </tr>" +
-                        "<tr><th >ID</th><td colspan='4' style='text-align:left;padding-left:10px'>" + dataFields["ID"] + "</td> </tr>" ;
+                        "<tr><th >Position</th><td colspan='4' style='text-align:left;padding-left:10px'>" + dataFields.location + "</td></tr>" +
+                        "<tr><th >Description</th><td colspan='4' style='text-align:left;padding-left:10px;padding-right:100px'>" + dataFields.description + "</td> </tr>" +
+                        "<tr><th >ID</th><td colspan='4' style='text-align:left;padding-left:10px' id='dataFieldsId"+i+"'>" + dataFields.id + "</td> </tr>" ;
 
                     if (i+1 < listDataFields.length)
                         markup +="<tr><td  colspan='5'><hr></td></tr>";
