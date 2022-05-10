@@ -9,7 +9,7 @@ import VariantFilterQuerist from './../../variant-filter/state-querist';
 import VariantFilterActions from '../../variant-filter/actions';
 
 const mapStateToProps = state => ({
-    locusVariant: StateQueristInterpretator.locusVariant(state),
+    locusVariant: StateQueristInterpretator.locusVariant(state) || config.default.igv.locus,
     //url: config.cnv.url + "/database" + '/searchAll?outputFormat=txt',
     url: config.cnv.url + "/database" + '/search?outputFormat=json',
     filters: { genomicRegions: VariantFilterQuerist.genomic.genomicRegions(state),
