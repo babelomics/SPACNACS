@@ -579,7 +579,9 @@ export default class Igv extends React.Component {
                                                     })
                                             if (position !== -1){
                                                 listDataFields[position].id= feature.id;
-                                                document.getElementById("dataFieldsId"+position).innerHTML= feature.id;
+                                                    if (document.getElementById("dataFieldsId"+feature.chr+(feature.start+1)+feature.end+feature.type+position) !== null){
+                                                        document.getElementById("dataFieldsId"+feature.chr+(feature.start+1)+feature.end+feature.type+position).innerHTML= feature.id;
+                                                    }
                                                 }
                                             })
                                 )
@@ -596,7 +598,7 @@ export default class Igv extends React.Component {
                         "<tr> <th >DataBase</th><td colspan='4' style='text-align:left;padding-left:10px'>"+track.name+"</td></tr>" +
                         "<tr><th >Position</th><td colspan='4' style='text-align:left;padding-left:10px'>" + dataFields.location + "</td></tr>" +
                         "<tr><th >Description</th><td colspan='4' style='text-align:left;padding-left:10px;padding-right:100px'>" + dataFields.description + "</td> </tr>" +
-                        "<tr><th >ID</th><td colspan='4' style='text-align:left;padding-left:10px' id='dataFieldsId"+i+"'>" + dataFields.id + "</td> </tr>" ;
+                        "<tr><th >ID</th><td colspan='4' style='text-align:left;padding-left:10px' id='dataFieldsId"+dataFields.chr+dataFields.start+dataFields.end+dataFields.type+i+"'>" + dataFields.id + "</td> </tr>";
 
                     if (i+1 < listDataFields.length)
                         markup +="<tr><td  colspan='5'><hr></td></tr>";
@@ -620,7 +622,7 @@ export default class Igv extends React.Component {
                     let elto = Object.assign({}, track.featureSource.config.resultsField);
                     let numCNVs = 0;
 
-                    let initElto = {chromosome:"", start: 0, end:0, ty:"", copy:0, score:0, sampleName:"", freqOverlap:0};
+                    let initElto = {chromosome:"", start: 0, end:0, ty:"", copy:0, score:0, sampleName:"", freqOverlap:0, pipeline:""};
                     elto = Object.assign({}, initElto);
                     popoverData.forEach(function (pD) {
                         let key = pD !== undefined && pD !== "" && pD.name !== undefined && pD.name !== "" ? pD.name[0].toLowerCase() + pD.name.substring(1): "";
@@ -649,7 +651,7 @@ export default class Igv extends React.Component {
                     let i = 0;
                     listDataFields.forEach(function (dataFields) {
                         markup +=
-                            "<tr> <th >DataBase</th><td>Spanish CNVs </td></tr>" +
+                            "<tr> <th >DataBase (pipeline)</th><td>Spanish CNVs  ("+ dataFields.pipeline +")</td></tr>" +
                             "<tr> <th >Chromosome</th><td>" + dataFields.chromosome + "</td></tr>" +
                             "<tr> <th >Locus</th><td>" + dataFields.start + "-" + dataFields.end + getNumBase( dataFields.start, dataFields.end )+"</td> </tr>" +
                             "<tr> <th >Type</th><td>" + dataFields.ty  + "</td> </tr>" +

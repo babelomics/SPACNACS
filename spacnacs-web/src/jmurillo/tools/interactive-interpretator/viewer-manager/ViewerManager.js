@@ -160,7 +160,8 @@ const ViewerManager = (props) => {
                 "DEL/DUP": "",
                 score:"",
                 freqOverlap:"",
-                "num_copy":""
+                "num_copy":"",
+                "pipeline":""
             },
             supportQueryParameters:true,
             url: props.url,

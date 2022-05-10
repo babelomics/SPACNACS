@@ -76,7 +76,7 @@ const subpopulations = [
     {
         description : "XVIII Symptoms, signs and abnormal clinical and laboratory findings, not elsewhere classified",
         id : 18,
-        label: "XVII" },
+        label: "XVIII" },
    /* {
         description : "XIX Injury, poisoning and certain other consequences of external causes",
         id : 19,
@@ -105,12 +105,12 @@ const subpopulations = [
     {
         description : "IBS (107 Spanish individuals from 1000genomes)",
         id : 25,
-        label: "IBS" },
+        label: "IBS" },*/
     {
         description : "Healthy controls",
         id : 26,
         label: "Healthy controls" },
-    {
+   /* {
         description : "I Certain infectious and parasitic diseases (controls)",
         id : 27,
         label: "I (controls)" },
