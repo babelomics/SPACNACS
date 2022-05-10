@@ -1,4 +1,4 @@
-chr	start	end	name	score	strand	cdStart	cdEnd	color	typestain
+#chr	start	end	name	score	strand	cdStart	cdEnd	color	typestain
 chr1	0	2300000	p36.33	.	.	0	0	230	gneg
 chr1	2300000	5400000	p36.32	.	.	0	0	172	gpos25
 chr1	5400000	7200000	p36.31	.	.	0	0	230	gneg
