@@ -169,11 +169,11 @@ const VariantFilterEditorBD = ({ activeEditor, selectEditor, numSamples }) => {
 				<Typography className={classes.heading}><b>Legend regulatory regions:</b></Typography>
 				<table style={{textAlign: "left"}}>
 					<tr><td><div class='Legend' style={{backgroundColor:"#FF0000"}}></div></td><td>promoter</td></tr>
-					<tr><td><div class='Legend' style={{backgroundColor:"#FF6969"}}></div></td><td>promoter_flanking_region</td></tr>
+					<tr><td><div class='Legend' style={{backgroundColor:"#FF6969"}}></div></td><td>promoter flanking region</td></tr>
 					<tr><td><div class='Legend' style={{backgroundColor:"#FACA00"}}></div></td><td>enhancer</td></tr>
-					<tr><td ><div class='Legend' style={{backgroundColor:"#40E0D0"}}></div></td><td>ctcf_binding_site</td></tr>
-					<tr><td ><div class='Legend' style={{backgroundColor:"#CD96CD"}}></div></td><td>tf_binding_site</td></tr>
-					<tr><td ><div class='Legend' style={{backgroundColor:"#D9D9D9"}}></div></td><td>open_chromatin_region</td></tr>
+					<tr><td ><div class='Legend' style={{backgroundColor:"#40E0D0"}}></div></td><td>ctcf binding site</td></tr>
+					<tr><td ><div class='Legend' style={{backgroundColor:"#CD96CD"}}></div></td><td>tf binding site</td></tr>
+					<tr><td ><div class='Legend' style={{backgroundColor:"#D9D9D9"}}></div></td><td>open chromatin region</td></tr>
 				</table>
 
 			</Paper>
