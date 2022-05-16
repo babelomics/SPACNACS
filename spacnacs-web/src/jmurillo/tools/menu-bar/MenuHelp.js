@@ -3,15 +3,13 @@ import Button from "@material-ui/core/es/Button/Button";
 import Menu from "@material-ui/core/es/Menu/Menu";
 import MenuItem from "@material-ui/core/es/MenuItem/MenuItem";
 import { makeStyles } from '@material-ui/core/styles';
-import AccountCircle from '@material-ui/icons/AccountCircle';
+
 import IconButton from "@material-ui/core/es/IconButton/IconButton";
 import IconHelp from '@material-ui/icons/Help';
 import IconDescription from '@material-ui/icons/Description';
 import IconCode from '@material-ui/icons/GitHub';
-import IconCite from '@material-ui/icons/FormatQuote';
 import IconVersion from '@material-ui/icons/Storage';
 import IconContact from '@material-ui/icons/Mail';
-import Modal from "@material-ui/core/es/Modal/Modal";
 import Popover from "@material-ui/core/es/Popover/Popover";
 import config from "../../../config";
 
@@ -63,7 +61,6 @@ const MenuHelp = () => {
     const classes = useStyles();
 
     const [anchorEl, setAnchorEl] = React.useState(null);
-    const [openModal, setOpenModal] = React.useState(false);
     const [optionMenu, setOptionMenu] = React.useState("cite");
 
     const handleClickMenu = (event) => {
@@ -74,15 +71,6 @@ const MenuHelp = () => {
         setAnchorEl(null);
     };
 
-    const handleOpenModal = (optionMenu) => {
-        handleClose();
-        setOptionMenu(optionMenu);
-        setOpenModal(true);
-    };
-
-    const handleCloseModal = () => {
-        setOpenModal(false);
-    };
 
     const [anchorElInfo, setAnchorElInfo] = React.useState(null);
 
@@ -113,13 +101,12 @@ const MenuHelp = () => {
 				open={Boolean(anchorEl)}
 				onClose={handleClose}>
 				<MenuItem onClick={e=>handleClose}>
-					<a className={classes.link} href={"https://github.com/babelomics/SPACNACS/wiki"} target={"_blank"}>
+					<a className={classes.link} href={"https://github.com/babelomics/SPACNACS/wiki"} target={"_blank"} rel="noopener noreferrer">
 						<IconDescription/>&nbsp;Documentation</a></MenuItem><br/>
 				<MenuItem onClick={e=>handleClose}>
-					<a className={classes.link} href={"https://github.com/babelomics/SPACNACS"} target={"_blank"}>
+					<a className={classes.link} href={"https://github.com/babelomics/SPACNACS"} target={"_blank"} rel="noopener noreferrer">
 						<IconCode/>&nbsp;Source code</a></MenuItem><br/>
 				<MenuItem onClick={e=>handleClickInfo(e,"contact")}><IconContact/>&nbsp;Contact</MenuItem><br/>
-                {/*<MenuItem onClick={e=>handleClickInfo(e,"cite")}><IconCite/>&nbsp;How to cite</MenuItem><br/>*/}
 				<MenuItem onClick={e=>handleClickInfo(e,"version")}><IconVersion/>&nbsp;Database version</MenuItem><br/>
 			</Menu>
 

@@ -1,9 +1,6 @@
 import React from 'react';
 import propTypes from 'prop-types';
-//import igv from 'igv/dist/igv.esm.min';
 import igv from 'igv/dist/igv.esm';
-//import Button from '@material-ui/core';
-//import ViewerManager from "./ViewerManager";
 
 const TrackTypes = propTypes.oneOf([
   'annotation', 'wig', 'alignment', 'variant', 'seg'
@@ -65,25 +62,7 @@ const BrowserOptions = {
 
   supportQueryParameters: propTypes.bool,         // parameters values URI encoded https://github.com/igvteam/igv.js/wiki/Query-Parameters
 }
-/*
-const genesTrack = {
-  name: 'Genes',
-  type: 'annotation',
-  format: 'bed',
-  sourceType: 'file',
-  url: 'https://s3.amazonaws.com/igv.broadinstitute.org/annotations/hg19/genes/refGene.hg19.bed.gz',
-  indexURL: 'https://s3.amazonaws.com/igv.broadinstitute.org/annotations/hg19/genes/refGene.hg19.bed.gz.tbi',
-  order: Number.MAX_VALUE,
-  visibilityWindow: 300000000,
-  displayMode: 'EXPANDED',
-  height: 80,
-}
-*/
 
-const genomicRegion = cnv  => {
-    alert("cnv " + cnv);
-    // return props.addGenomicRegion()
-};
 
 const removeSpecialChar =(key, val) => {
     if (typeof val === 'function') {
@@ -121,9 +100,6 @@ export default class Igv extends React.Component {
     showGenes: propTypes.bool,
   };
 
-//https://github.com/igvteam/igv.js/blob/8dbe2cb7992e964de8436882604c49e2a4e5ee76/examples/custom-webservice.html
-
-
 
   componentDidMount() {
     igv.createBrowser(this.element, { ...this.props, tracks: getTracks(this.props)
@@ -138,14 +114,11 @@ export default class Igv extends React.Component {
             }
         }
 
-       // this.browser.trackViews[4].viewports[0].$content[0].innerHTML = "display data<br/>repace<br/>display data<br/>repace<br/>";
-       // this.browser.trackViews[4].viewports[0].$content[0].innerHTML = "display data<br/>repace<br/>display data<br/>repace<br/>";
         updateTrackLegendList(this.browser);
 
         this.browser.on("locuschange", updateTrackLegendList);
 
         function updateTrackLegendList () {
-            let find = -1;
             for (var i=0; i < b.trackViews.length; i++){
                 if (b.trackViews[i].track !== undefined && b.trackViews[i].track.config !== undefined && b.trackViews[i].track.config.legend !== undefined){
                     b.trackViews[i].viewports[0].$content[0].innerHTML = b.trackViews[i].track.config.legend;
@@ -279,11 +252,7 @@ export default class Igv extends React.Component {
                 if (!popoverData || !popoverData.length) {
                     return false;
                 }
-                let region = {
-                    chromosome: "1",
-                    start: 9999999999999,
-                    end: 0
-                };
+
 
             if ("cytobands" === track.name && !!track.featureSource && !!track.featureSource.config && !!track.featureSource.config.resultsField) {
                 let listDataFields = [];
@@ -424,11 +393,6 @@ export default class Igv extends React.Component {
                             markup +="<tr><td  colspan='5'><hr></td></tr>";
 
                         i=i+1;
-                        //markup += "<tr><td colspan=2></td></tr>";
-
-                        //markup += "<tr><td colspan='2' \><button onclick=>" + "link  " + cnv + "</button></td></tr>";
-                        //markup += "<tr><td colspan=2> <Button onClick={alert('entra')}>Add filter region</Button></td></tr>";
-                        // track.browser.config.addGenomicRegion(region);
                     });
 
 
@@ -528,11 +492,6 @@ export default class Igv extends React.Component {
                             markup +="<tr><td  colspan='10'><hr></td></tr></table><table>";
 
                         i=i+1;
-                        //markup += "<tr><td colspan=2></td></tr>";
-
-                        //markup += "<tr><td colspan='2' \><button onclick=>" + "link  " + cnv + "</button></td></tr>";
-                        //markup += "<tr><td colspan=2> <Button onClick={alert('entra')}>Add filter region</Button></td></tr>";
-                        // track.browser.config.addGenomicRegion(region);
                     });
 
 
@@ -604,11 +563,6 @@ export default class Igv extends React.Component {
                         markup +="<tr><td  colspan='5'><hr></td></tr>";
 
                     i=i+1;
-                    //markup += "<tr><td colspan=2></td></tr>";
-
-                    //markup += "<tr><td colspan='2' \><button onclick=>" + "link  " + cnv + "</button></td></tr>";
-                    //markup += "<tr><td colspan=2> <Button onClick={alert('entra')}>Add filter region</Button></td></tr>";
-                    // track.browser.config.addGenomicRegion(region);
                 });
 
 
@@ -725,48 +679,7 @@ export default class Igv extends React.Component {
          this.browser.loadTrack(JSON.stringify(listNextTracksCNVs[0],removeSpecialChar));
      }
 
-      /*
 
-    if (!!this.props && document.getElementsByClassName("igv-search-input")[0].value !== props.locus && !!this.browser) {
-    // No change this.props.locus if (!!this.props && this.props.locus !== props.locus && !!this.browser) {
-          this.browser.search(props.locus)
-    } else {
-        let tracksUpdate =  this.browser.trackViews
-            .filter(view => view.track.id == 'CNVs')
-            .map(view => view.track)
-        console.log("antes load",props,  this.props);
-        console.log("tracksUpdate",tracksUpdate);
-
-        this.browser.removeTrack(tracksUpdate[0]);
-        console.log("despues load",props,  this.props);
-        let cnvsUpdateTrack = props.tracks.filter(t=> t.name =="CNVs")[0];
-        this.browser.loadTrack(cnvsUpdateTrack);
-
-        //this.browser.updateViews(false, tracksUpdate,true);
-    }*/
-/*
-    alert("changue props");
-      //let listTracks = this.browser.findTracks("name","CNVs");
-      const listTracksCNVs = this.browser.trackViews
-          .filter(view => view.track.name === 'CNVs' )
-          .map(view => view.track)
-      const tracksToUpdate = listTracksCNVs.filter(track => !previousTracks.has(getTrackID(track)))
-
-      listTracksCNVs.forEach(track => this.browser.removeTrack(track))
-      tracksToUpdate.forEach(track => this.browser.loadTrack(track))
-*/
-      /*
-         console.log(this.browser.trackViews ,"this.browser")
-           for (var i=0; i < this.browser.config.tracks.length; i++){
-               console.log(this.browser.config.tracks);
-               if (this.browser.config.tracks[i] != undefined && this.browser.config.tracks[i].name === "CNVs"){
-                   console.log(this.browser.config.tracks);
-                   this.browser.config.tracks[i].body = JSON.stringify(translateFilterToServer(this.props.filters, null))
-                   console.log(this.browser.config.tracks);
-                   //this.browser.trackViews[i].viewports[0].$content[0].innerHTML = b.trackViews[i].track.config.legend;
-               }
-           }
-           */
        }
 
   render() {
@@ -778,88 +691,6 @@ export default class Igv extends React.Component {
   }
 }
 
-/*
-function translateFilterToServer( filter, options) {
-    const serverFilter = {
-        // includeSample: !!filter && filter.samples || [],
-    };
-
-    if (!!filter && !!filter.groups) {
-        serverFilter.groups = filter.groups.groups;
-    }
-    if (!!filter && !!filter.optionsView && !!filter.optionsView.selectedView) {
-        serverFilter.selectedView = filter.optionsView.selectedView;
-    }
-    if (!!filter && !!filter.phenotypes) {
-
-            filter.phenotypes.forEach(s => {
-                if (s.annotationField == "all") {
-                    if (s.searchText != "")
-                        serverFilter[s.annotationField] = s.searchText;
-                } else {
-                    if (serverFilter[s.annotationField] == undefined)
-                        serverFilter[s.annotationField] = []
-                    serverFilter[s.annotationField].push(s.id);
-                }
-            });
-    }
-
-    if (!!options && options.chr != "all"){
-        serverFilter.genomicRegions=[];
-        serverFilter.genomicRegions.push(options.chr.substring(3) + ":" + options.start + "-" + options.end );
-    }
-
-    /*
-    if (!!filter && !!filter.genomicRegions) {
-            serverFilter.genomicRegions = [];
-        filter.genomicRegions.map(region => (
-           serverFilter.genomicRegions.push(region)
-        ))
-    }
-    */
-    /*filter.genomicRegions.map(region => (
-        serverFilter.genomicRegions.push(`${region.chromosome}${!!region.start ? ":" + region.start : ""}${!!region.end ? "-" + region.end : ""}`)
-    ));*
-
-    if (!!filter && 0 < (filter.variantTypes || []).length) {
-        serverFilter.variantTypes = filter.variantTypes;
-    }
-    /*
-        if (!!filter && 0 < (filter.consequenceTypes || []).length) {
-            serverFilter['annot-ct'] = filter.consequenceTypes.join(",");
-        }*
-
-    if (!!filter && 0 < (filter.vcfMetrics || []).length) {
-        serverFilter.filter = filter.vcfMetrics.join(",");
-    }
-
-    const outFilters = [];
-    if (!!filter && !!filter.populationFrequency) {
-        if (isNumberStringValid(filter.populationFrequency.min)) {
-            outFilters.push(`${filter.population}:${filter.subpopulation}>${filter.min}`);
-        }
-        if (isNumberStringValid(filter.max)) {
-            outFilters.push(`${filter.population}:${filter.subpopulation}<${filter.max}`);
-        }
-    }
-    if (0 < outFilters.length) {
-        serverFilter['alternate_frequency'] = outFilters.join(";");
-    }
-
-    if (!!filter && 0 < ((!!filter.clinical && filter.clinical.phenotypes) || []).length) {
-        //outFilter['annot-hpo'] = inFilter.clinical.phenotypes.join(",");
-        serverFilter['annot-hpo'] = filter.clinical.phenotypes;
-    }
-
-    if (!!filter && 0 < (( filter.clinvars) || []).length) {
-        //outFilter.clinicalSignificance = inFilter.clinvars.join(",");
-        serverFilter.clinicalSignificance = filter.clinvars;
-    }
-
-    console.log("Search", serverFilter);
-    return serverFilter;
-}
-*/
 const isNumberStringValid = x => !!x && 0 < x.trim().length && !isNaN(x);
 
 
@@ -867,9 +698,9 @@ function getTracks(props) {
     // return props.tracks;props.showGenes ? props.tracks.concat(genesTrack) : props.tracks
 
     return props.tracks.sort(function(a, b){
-        if((a.order === null && b.order === null) || (a.order === undefined && b.order === undefined)) return 1;
-        if((a.order === null && b.order !== null) ||(a.order === undefined && b.order !== undefined) ) return -1;
-        if((a.order !== null && b.order === null) || a.order !== undefined && b.order === undefined) return 1;
+        if ((a.order === null && b.order === null) || (a.order === undefined && b.order === undefined)) return 1;
+        if ((a.order === null && b.order !== null) || (a.order === undefined && b.order !== undefined)) return -1;
+        if ((a.order !== null && b.order === null) || (a.order !== undefined && b.order === undefined)) return 1;
         if (a.order > b.order) return 1;
         if (a.order < b.order) return -1;
         return 0;

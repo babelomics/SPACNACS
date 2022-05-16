@@ -2,7 +2,7 @@ import './App.css';
 import React from 'react';
 
 import { Provider as StoreProvider } from 'react-redux';
-import { BrowserRouter as Router, Route,  Switch, useHistory, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Route,  Switch, useLocation } from 'react-router-dom';
 
 import MenuBar from './jmurillo/tools/menu-bar/ConnMenuBar';
 import HomePage from './HomePageCnv.js';

@@ -1,4 +1,3 @@
-import OpencgaSessionClient from "./OpencgaSessionClient";
 
 class OpencgaUserClient {
 

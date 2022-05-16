@@ -4,16 +4,12 @@ import IGVBrowser from "./IGVBrowser";
 import config from './../../../../config';
 
 
-function percent(start, end, porc) {
-    let c = (parseFloat(end) - parseFloat(start)) * parseFloat(porc);
-    return parseFloat(c);
-}
 
 function showDataGraphic (data){
     if (data === undefined)
         return "";
     let jsonData = JSON.parse(data);
-    let i = 0;
+
     if (jsonData.hasOwnProperty("results")) {
         jsonData.results.forEach(d => {
             d.start = d.start - 1;
@@ -138,7 +134,6 @@ const ViewerManager = (props) => {
         }
     }
 
-    const listTracksTemp = [];
     const listTracksS = [
         {
             name: "CNVs",
@@ -183,9 +178,8 @@ const ViewerManager = (props) => {
 
                 // Igv type bed add +1 in start to show graphic (it does not work, modifiy igv
                 parser: showDataGraphic,
-                mappings:{ chr: "chromosome", start: "start", end: "end", sample: "fileId", value: "ty", sample: "sampleName" }
+                mappings:{ chr: "chromosome", start: "start", end: "end",  value: "ty", sample: "sampleName" }
             },
-            displayMode: "EXPANDED",
             colorTable: {
 
                 "dup": "#028401",
@@ -230,19 +224,6 @@ const ViewerManager = (props) => {
         }
     ];
 
-
-
-    const listCommonsTracks = [
-        {
-            type: "seg",
-            url: props.url +"&typeGroups=INDEX", //"http://192.168.150.147:8888/prioCNVs/webservices/rest/prioritization/5dc1502af7db452b6b4dafd8/search?outputFormat=txt&limit=3&skip=1&filters=study=2,includeSample=97",
-            indexed: false,
-            isLog: true,
-            name: "CNs INDEX",
-            displayMode: "EXPANDED"
-
-        }
-    ];
 
     let listShowTracks = props.multisample ? listTracksM : listTracksS;
     listShowTracks= listShowTracks.concat(props.genomes[props.genome].tracks);

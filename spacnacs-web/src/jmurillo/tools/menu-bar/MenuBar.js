@@ -9,9 +9,6 @@ import logoBar from "../../../images/logo.svg";
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import HtmlTooltip from "./../../common/HtmlTooltip";
-import Button from "@material-ui/core/es/Button/Button";
-import Menu from "@material-ui/core/es/Menu/Menu";
-import MenuItem from "@material-ui/core/es/MenuItem/MenuItem";
 import MenuHelp from "./MenuHelp";
 import config from "../../../config";
 

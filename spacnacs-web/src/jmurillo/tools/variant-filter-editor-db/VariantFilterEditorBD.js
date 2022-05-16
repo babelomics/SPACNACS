@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Collapse, Paper } from '@material-ui/core';
+import {  Paper } from '@material-ui/core';
 // import { ToggleButton } from '@material-ui/lab';
-import { AppBar, Tab, Tabs } from '@material-ui/core';
 
 import uiFilters from './filtersDB';
 
@@ -12,10 +11,6 @@ import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
 
 const useStyles = makeStyles((theme) => ({
     root: {

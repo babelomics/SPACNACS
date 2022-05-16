@@ -7,7 +7,7 @@ import config from './../../../config'
 
 const mapStateToProps = state => ({
     title2: ToolQuerist.name(state),
-    title: !!config && !!config.cnv && config.cnv.title  || "PrioCNV"
+    title: (!!config && !!config.cnv && config.cnv.title ) || "PrioCNV"
 });
 
 

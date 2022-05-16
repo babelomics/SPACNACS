@@ -97,12 +97,12 @@ const HomePage = props => (
                   Supported by:
                 </Typography>
                 <Typography  variant="h6" color="inherit" paragraph={true}>
-                  <a title="ciberer BIER" href="http://bier.ciberer.es/" target="_blank"><img style={{margin:"3px",height:"40px"}} src="http://csvs.clinbioinfosspa.es/images/logobier.jpg" /></a>
-                  <a title="ciberer" href="https://www.ciberer.es/" target="_blank" ><img style={{margin:"3px",height:"40px"}} src="http://csvs.clinbioinfosspa.es/images/logo_Ciberer.jpg"/></a>
-                  <a title="Fundación Progreso y Salud" href="https://www.sspa.juntadeandalucia.es/fundacionprogresoysalud/es" target="_blank" ><img style={{margin:"3px",height:"40px",backgroundColor: "#05723A"}} src="http://csvs.clinbioinfosspa.es/images/logo_FPS.png"/></a>
-                  <a title="babelomics" href="http://babelomics.bioinfo.cipf.es/" target="_blank" ><img style={{margin:"3px",height:"40px",backgroundColor: "#05723A"}} src="http://csvs.clinbioinfosspa.es/images/logoBabelomics_positive_trans.svg" /></a>
-                  <a title="Instituto de Salud Carlos III" href="https://www.isciii.es/Paginas/Inicio.aspx" target="_blanck" ><img style={{margin:"3px",height:"40px"}} src="http://csvs.clinbioinfosspa.es/images/LOGO_Micinn_Isciii.jpg"/></a>
-                  <a title="ELIXIR SPAIN" href="https://elixir-europe.org/about-us/who-we-are/nodes/spain" target="_blank" ><img style={{margin:"3px",height:"40px",backgroundColor:"white"}} src="http://csvs.clinbioinfosspa.es/images/logo_ELIXIR_spain.png" /></a>
+                  <a title="ciberer BIER" href="http://bier.ciberer.es/" target="_blank" rel="noopener noreferrer"><img style={{margin:"3px",height:"40px"}} src="http://csvs.clinbioinfosspa.es/images/logobier.jpg" alt="ciberer BIER"/></a>
+                  <a title="ciberer" href="https://www.ciberer.es/" target="_blank" rel="noopener noreferrer"><img style={{margin:"3px",height:"40px"}} src="http://csvs.clinbioinfosspa.es/images/logo_Ciberer.jpg" alt="ciberer"/></a>
+                  <a title="Fundación Progreso y Salud" href="https://www.sspa.juntadeandalucia.es/fundacionprogresoysalud/es" target="_blank" rel="noopener noreferrer"><img style={{margin:"3px",height:"40px",backgroundColor: "#05723A"}} src="http://csvs.clinbioinfosspa.es/images/logo_FPS.png" alt="Fundación Progreso y Salud"/></a>
+                  <a title="babelomics" href="http://babelomics.bioinfo.cipf.es/" target="_blank" rel="noopener noreferrer"><img style={{margin:"3px",height:"40px",backgroundColor: "#05723A"}} src="http://csvs.clinbioinfosspa.es/images/logoBabelomics_positive_trans.svg" alt="babelomics" /></a>
+                  <a title="Instituto de Salud Carlos III" href="https://www.isciii.es/Paginas/Inicio.aspx" target="_blanck" rel="noopener noreferrer"><img style={{margin:"3px",height:"40px"}} src="http://csvs.clinbioinfosspa.es/images/LOGO_Micinn_Isciii.jpg" alt="Instituto de Salud Carlos III"/></a>
+                  <a title="ELIXIR SPAIN" href="https://elixir-europe.org/about-us/who-we-are/nodes/spain" target="_blank" rel="noopener noreferrer"><img style={{margin:"3px",height:"40px",backgroundColor:"white"}} src="http://csvs.clinbioinfosspa.es/images/logo_ELIXIR_spain.png" alt="ELIXIR SPAIN"/></a>
                 </Typography>
 
               </div>

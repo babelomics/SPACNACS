@@ -1,5 +1,4 @@
 import React from 'react';
-import { Collapse } from '@material-ui/core';
 
 import ConnMenuBar from './ConnMenuBar';
 import ConnPopulationPanel from './ConnPopulationPanel';

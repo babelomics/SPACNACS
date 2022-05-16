@@ -1,26 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Table, TableBody, TableCell, TableRow, InputBase, Paper, withStyles, IconButton, Typography, TableHead } from '@material-ui/core';
+import { Table, TableBody, TableCell, TableRow, InputBase, Paper, withStyles, IconButton,  TableHead } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
-import RemoveIcon from '@material-ui/icons/Remove';
-import Select from "@material-ui/core/es/Select/Select";
-import MenuItem from "@material-ui/core/es/MenuItem/MenuItem";
 import Client from '../../../../client-interfaces/Client';
-import HelpIcon from '@material-ui/icons/Help';
 import HtmlTooltip from "./../../../../common/HtmlTooltip";
-import Fab from "@material-ui/core/es/Fab/Fab";
-import Button from "@material-ui/core/es/Button/Button";
 import SearchIcon from '@material-ui/icons/Search';
 import ClearIcon from '@material-ui/icons/Clear';
-import Pagination from '@material-ui/lab/Pagination';
 import TablePagination from "@material-ui/core/es/TablePagination/TablePagination";
-import Alert from '@material-ui/lab/Alert';
 
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
 import Chip from '@material-ui/core/Chip';
 
 const styles = theme => ({

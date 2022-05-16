@@ -9,8 +9,8 @@ import EntitiesQuerist from "../../entities/state-querist";
 
 const mapStateToProps = state => ({
     activeEditor: StateQuerist.activeEditor(state),
-    numSamples: !!EntitiesQuerist.entity(state, "analysis") && !!EntitiesQuerist.entity(state, "analysis").samplesFiles &&
-	EntitiesQuerist.entity(state, "analysis").samplesFiles.length || 0
+    numSamples: (!!EntitiesQuerist.entity(state, "analysis") && !!EntitiesQuerist.entity(state, "analysis").samplesFiles &&
+	EntitiesQuerist.entity(state, "analysis").samplesFiles.length) || 0
 })
 
 const mapDispatchToProps = dispatch => ({

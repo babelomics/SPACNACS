@@ -27,16 +27,6 @@ class CNVsAdditionalInfoClient {
                 signal: abortSignal,
             };
 
-            const fieldsToInclude = [
-                'id',
-                'name',
-                'creationDate',
-                'modificationDate',
-                'description',
-                //'organization',
-                'organism',
-                'currentRelease',
-            ];
             const queryStrings = [
                 `sampleId=${cnv.sampleId}`,
                 `chromosome=${cnv.chromosome}`,

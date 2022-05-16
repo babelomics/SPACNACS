@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import VariantFilterActions from '../../../variant-filter/actions';
 import VariantFilterQuerist from '../../../variant-filter/state-querist';
-import { Typography, FormControlLabel, Paper, Checkbox } from '@material-ui/core';
+import { Typography, FormControlLabel, Checkbox } from '@material-ui/core';
 
 
 

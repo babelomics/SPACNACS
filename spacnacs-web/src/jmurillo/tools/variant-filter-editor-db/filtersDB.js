@@ -1,30 +1,7 @@
 import React from 'react';
 import RestoreIcon from '@material-ui/icons/Restore';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-//import LocationOnIcon from '@material-ui/icons/LocationOn';
-
-//import ConnStudyControlFilter from '../variant-filter-editor/filters/group/ConnGroupFilter';
-
-//import ConnGenomicFilter from '../variant-filter-editor/filters/genomic/ConnGenomicFilter';
-//import ConnGenomicFilter from '../variant-filter-editor/filters/genomic/ConnGenomicFilter';
 import ConnPopulationFrequencyFilter from '../variant-filter-editor/filters/population-frequency/ConnPopulationFrequencyFilter';
-//import ConnConservationFilter from '../variant-filter-editor/filters/conservation/ConnConservationFilter';
-//import ConnClinicalFilter from '../variant-filter-editor/filters/clinical/ConnClinicalFilter';
-// import ConnDeleteriousnessFilter from './filters/deleteriousness/ConnDeleteriousnessFilter';
-// import ConnConsequenceTypeFilter from './filters/consequence-types/ConnConsequenceTypeFilter';
-// import ConnOrderControlFilter from './filters/order/ConnOrderFilter';
-// import PanelFilter from '../variant-filter-editor/filters/samples/ConnSamplesFilter';
-
-//import DefaultFilterStatus from '../variant-filter-editor/filters/FilterStatus';
-//import ConnConservationStatus from '../variant-filter-editor/filters/conservation/ConnConservationFilterStatus';
-// import ConnDeleteriousnessStatus from '../variant-filter-editor/filters/deleteriousness/ConnDeleteriousnessFilterStatus';
-
-//import ConnStudyControlStatus from '../variant-filter-editor/filters/group/ConnGroupFilterStatus';
-
-// import ConnConsequenceTypeStatus from '../variant-filter-editor/filters/consequence-types/ConnConsequenceTypeFilterStatus';
-//import ConnOrderControlStatus from './filters/order/ConnOrderStatus';
-
-// showNumSample --> { 0 == All, 1=only 1 sample, 2=multisample)
 
 
 import ConnGenomicStatus from '../variant-filter-editor/filters/genomic/ConnGenomicFilterStatus';
@@ -38,8 +15,6 @@ import ConnSequencingTypeFilter from '../variant-filter-editor/filters/genomic/C
 import ConnPipelineStatus from '../variant-filter-editor/filters/genomic/ConnPipelineStatus';
 import ConnPipelineFilter from '../variant-filter-editor/filters/genomic/ConnPipelineFilter';
 
-import ConnClinicalStatus from '../variant-filter-editor/filters/clinical/ConnFilterStatus';
-import ConnClinicalSignificance from '../variant-filter-editor/filters/clinical/ConnClinicalSignificance';
 import ConnClinicalAnnotationStatus from '../variant-filter-editor/filters/clinical/ConnAnnotationStatus';
 import ConnAnnotationSelector from '../variant-filter-editor/filters/clinical/ConnAnnotationSelector';
 
@@ -54,8 +29,7 @@ const filtersDB = {
         short: "Ge",
         label: "Locus",
         icon: <FavoriteIcon />,
-       // Component: ConnGenomicFilter,
-        StatusIndicator: ConnGenomicStatus, //DefaultFilterStatus,
+        StatusIndicator: ConnGenomicStatus,
         sections : [
             {
                 label: "Region",
@@ -74,8 +48,7 @@ const filtersDB = {
         short: "Va",
         label: "Variant type",
         icon: <FavoriteIcon />,
-        // Component: ConnGenomicFilter,
-        StatusIndicator: ConnVariantTypeStatus, //DefaultFilterStatus,
+        StatusIndicator: ConnVariantTypeStatus,
         sections : [
             {
                 label: "Variant type",
@@ -85,27 +58,11 @@ const filtersDB = {
         ]
     },
 
-    /*
-    clinical: {
-            short: "Cl",
-            label: "Clinical signif.",
-            icon: <RestoreIcon />,
-            //Component: ConnClinicalFilter,
-            StatusIndicator: ConnClinicalStatus,
-            sections : [
-                {
-                    label: "Clincal significance",
-                    Component: ConnClinicalSignificance,
-                    sectionId: "clinvar-significance"
-                }
-            ]
-     },*/
 
     term: {
         short: "Te",
         label: "Annotations",
         icon: <RestoreIcon />,
-        //Component: ConnClinicalFilter,
         StatusIndicator: ConnClinicalAnnotationStatus,
         sections : [
             {
@@ -115,15 +72,6 @@ const filtersDB = {
             }
         ]
     },
-
-
-    /* conservation: {
-        short: "Co",
-        label: "Conservation",
-        icon: <LocationOnIcon />,
-        Component: ConnConservationFilter,
-        StatusIndicator: ConnConservationStatus
-    },*/
 
     frequency: {
         short: "PF",
@@ -169,29 +117,6 @@ const filtersDB = {
             }
         ]
     },
-
-/*
-panel: {
-    short: "Pa",
-    label: "Panel",
-    icon: <RestoreIcon />,
-    Component: PanelFilter,
-    StatusIndicator: DefaultFilterStatus,
-},
-consequences: {
-    short: "CT",
-    label: "Consequences",
-    icon: <LocationOnIcon />,
-    Component: ConnConsequenceTypeFilter,
-    StatusIndicator: ConnConsequenceTypeStatus,
-},
-deleteriousness: {
-    short: "De",
-    label: "Deleteriousness",
-    icon: <FavoriteIcon />,
-    Component: ConnDeleteriousnessFilter,
-    StatusIndicator: ConnDeleteriousnessStatus,
-},*/
 };
 
 

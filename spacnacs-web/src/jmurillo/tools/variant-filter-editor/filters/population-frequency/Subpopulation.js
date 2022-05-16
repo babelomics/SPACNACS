@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { InputBase, Paper, Typography } from '@material-ui/core';
+import { InputBase, Paper } from '@material-ui/core';
 
 
 const containerStyle = { display: "flex", justifyContent: "flex-start", alignItems: "center", maxWidth: "10rem", paddingLeft:"2rem" };
-const labelStyle = { marginLeft: "1em", flexGrow: 1 };
 const boxStyle = { flexShrink: 0, width: "5em", marginLeft: "0.5em", marginRight: "0.5em" };
 
 

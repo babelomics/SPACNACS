@@ -1,29 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Collapse, Paper } from '@material-ui/core';
-import { AppBar, Tab, Tabs } from '@material-ui/core';
+import {  Paper } from '@material-ui/core';
 
-import uiFilters from './filtersDB';
 
 import { makeStyles } from '@material-ui/core/styles';
-import Accordion from '@material-ui/core/Accordion';
-import AccordionSummary from '@material-ui/core/AccordionSummary';
-import AccordionDetails from '@material-ui/core/AccordionDetails';
-import Typography from '@material-ui/core/Typography';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
 import Chip from "@material-ui/core/es/Chip/Chip";
 import HtmlTooltip from "../../common/HtmlTooltip";
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import IconButton from "@material-ui/core/es/IconButton/IconButton";
-import SequencingTypeFilter from "../variant-filter-editor/filters/genomic/SequencingTypeFilter";
 import InfoOutlined from '@material-ui/icons/InfoOutlined';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
-import { styled } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
     root: {
