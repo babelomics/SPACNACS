@@ -1,5 +1,6 @@
 import './App.css';
-import React from 'react';
+import React, {useEffect } from 'react';
+import GA4React from "ga-4-react";
 
 import { Provider as StoreProvider } from 'react-redux';
 import { BrowserRouter as Router, Route,  Switch, useLocation } from 'react-router-dom';
@@ -18,11 +19,9 @@ import createStore from './createStore';
 import config from './config';
 Client.instance = new CNVsClient(config.opencga);
 
-
-
 const store = createStore();
-
-
+const TRACKING_ID = config.TRACKING_ID;
+const ga4react = new GA4React(TRACKING_ID);
 
 function InnerApp() {
     const location = useLocation();
@@ -42,7 +41,7 @@ function InnerApp() {
 
 
 function App() {
-
+  ga4react.initialize().catch(err => console.error(err));
 
   return (
       <StoreProvider store={store}>
